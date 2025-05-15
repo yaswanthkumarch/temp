@@ -1,0 +1,144 @@
+$primary-color: #ff5722;
+$bg-color: rgba(255, 255, 255, 0.8);
+$glass-effect: blur(10px);
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0rem;
+  background: $bg-color;
+  backdrop-filter: $glass-effect;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+.logo span {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #2e2e2e;
+  white-space: nowrap; // Prevent wrapping of the logo text
+  overflow: hidden;
+  text-overflow: ellipsis; // Optionally, you can hide overflowing text with an ellipsis on small screens
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.navLinks {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.navLinks a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.navLinks a:hover {
+  background-color: rgba(255, 87, 34, 0.1);
+  color: $primary-color;
+}
+
+.activeLink {
+  color: $primary-color;
+  border-bottom: 2px solid $primary-color;
+}
+
+.languageSelector {
+  margin-left: 1rem;
+  transition: all 0.3s ease; /* Transition for smooth appearance */
+  select {
+    padding: 0.4rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: white;
+    font-weight: 500;
+    cursor: pointer;
+    max-width: 120px; // Restrict width on desktop
+    width: 100%; // Flexible width
+    transition: all 0.3s ease; /* Transition for smooth appearance */
+  }
+}
+
+// MOBILE STYLES
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navLinks {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: white;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    padding: 1rem 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    z-index: 999;
+    transform: translateY(-100%);
+  }
+
+  .navLinks.active {
+    display: flex;
+    transform: translateY(0); /* Smooth reveal transition */
+  }
+
+  .navLinks a {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 1.1rem;
+  }
+
+  .languageSelector {
+    margin: 1rem 0;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+  }
+}
