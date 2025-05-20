@@ -85,7 +85,7 @@
 // PhotoGallery.js
 
 import React from 'react';
-
+import { useTranslation } from 'react-i18next';
 const images = [
   { src: '/temple-1.png', title: 'Temple One' },
   { src: '/temple-2.png', title: 'Temple Two' },
@@ -96,6 +96,7 @@ const images = [
 ];
 
 const PhotoGallery = () => {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '3rem',
@@ -113,7 +114,7 @@ const PhotoGallery = () => {
         textTransform: 'uppercase',
         letterSpacing: '1px',
       }}>
-        Temple Photo Gallery
+        {t('galary')}
       </h1>
 
       <div style={{

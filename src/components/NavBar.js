@@ -142,9 +142,10 @@ const NavBar = () => {
         <div className={styles.languageSelector}>
           <select value={i18n.language} onChange={handleLanguageChange}>
             <option value="en">English</option>
-            <option value="kn">ಕನ್ನಡ</option>
+            {/* <option value="kn">ಕನ್ನಡ</option>
+            <option value="ta">தமிழ்</option> */}
             <option value="te">తెలుగు</option>
-            <option value="ta">தமிழ்</option>
+            
           </select>
         </div>
       </div>

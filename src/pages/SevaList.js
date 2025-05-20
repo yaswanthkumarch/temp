@@ -6,10 +6,11 @@ const SevaList = () => {
   const [amount, setAmount] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [gotra, setGotra] = useState('');
-  const [pujaMode, setPujaMode] = useState('offline'); // Default: "offline"
-  const [paymentConfirmed, setPaymentConfirmed] = useState(false); // For payment confirmation
+  const [pujaMode, setPujaMode] = useState('offline');
+  const [paymentConfirmed, setPaymentConfirmed] = useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [upiQR, setUpiQR] = useState(''); // Store the UPI QR code URL
 
   const sevas = [
     { name: 'Abhisheka Seva', amount: '1000' },
@@ -20,68 +21,65 @@ const SevaList = () => {
     { name: 'Sri Vishnu Sahasranama', amount: '2500' },
   ];
 
-  // Handle name input
   const handleNameChange = (e) => {
     setUserName(e.target.value);
   };
 
-  // Handle seva selection
   const handleSevaChange = (e) => {
     const sevaName = e.target.value;
     setSelectedSeva(sevaName);
-    const selected = sevas.find(seva => seva.name === sevaName);
+    const selected = sevas.find((seva) => seva.name === sevaName);
     setAmount(selected.amount);
 
-    // Set default confirmation message with selected date
     if (selectedDate) {
       setConfirmationMessage(`Your ${sevaName} is scheduled for ${selectedDate}`);
     }
   };
 
-  // Handle date change
   const handleDateChange = (e) => {
     const date = e.target.value;
     setSelectedDate(date);
     setConfirmationMessage(`Your ${selectedSeva} is scheduled for ${date}`);
   };
 
-  // Handle Gotra input
   const handleGotraChange = (e) => {
     setGotra(e.target.value);
   };
 
-  // Handle puja mode change (Online or Offline)
   const handlePujaModeChange = (e) => {
     setPujaMode(e.target.value);
     setConfirmationMessage(`The ${selectedSeva} will be conducted ${e.target.value}.`);
   };
 
-  // Handle payment confirmation checkbox
   const handlePaymentConfirmationChange = (e) => {
     setPaymentConfirmed(e.target.checked);
   };
 
-  // Handle WhatsApp message for registration
   const handleWhatsAppRegister = () => {
     if (paymentConfirmed) {
       const message = `Hello, I am ${userName} with Gotra ${gotra}. I would like to register for ${selectedSeva} (₹${amount}) at Sri Anjaneya Swami Temple.\n\nPuja Mode: ${pujaMode === 'online' ? 'Online' : 'Offline'}.\nScheduled Date: ${selectedDate}.`;
       const whatsappUrl = `https://wa.me/+918074498661?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
     } else {
-      alert("Please confirm that you have made the payment before proceeding.");
+      alert('Please confirm that you have made the payment before proceeding.');
     }
   };
 
-  // Form validation before enabling the button
   const isFormValid = userName && selectedSeva && selectedDate && gotra && paymentConfirmed;
 
-  // Display error message if form is incomplete
   const validateForm = () => {
     if (!userName || !selectedSeva || !selectedDate || !gotra || !paymentConfirmed) {
       setErrorMessage('Please fill all fields and confirm the payment before proceeding.');
     } else {
       setErrorMessage('');
     }
+  };
+
+  const handleUPIClick = () => {
+    // Generate the UPI link and create the QR code
+    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%kumar&am=${amount}&cu=INR`;
+    const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}`;
+    setUpiQR(qrURL);
   };
 
   useEffect(() => {
@@ -91,7 +89,7 @@ const SevaList = () => {
   return (
     <div style={styles.container}>
       <h1 style={styles.header}>Seva List - 2025</h1>
-      
+
       {/* User Name Input */}
       <div style={styles.formContainer}>
         <label style={styles.label}>Your Name</label>
@@ -112,7 +110,6 @@ const SevaList = () => {
           {sevas.map((seva, index) => (
             <option key={index} value={seva.name}>
               {seva.name}
-               {/* (₹{seva.amount}) */}
             </option>
           ))}
         </select>
@@ -150,17 +147,7 @@ const SevaList = () => {
         </select>
       </div>
 
-      {/* Payment Confirmation Checkbox */}
-      <div style={styles.formContainer}>
-        <input
-          type="checkbox"
-          checked={paymentConfirmed}
-          onChange={handlePaymentConfirmationChange}
-          id="paymentConfirmed"
-          style={styles.checkbox}
-        />
-        <label htmlFor="paymentConfirmed" style={styles.label}>Confirm Payment</label>
-      </div>
+      
 
       {/* Confirmation Message */}
       {confirmationMessage && <p style={styles.confirmationMessage}>{confirmationMessage}</p>}
@@ -173,10 +160,29 @@ const SevaList = () => {
           <div style={styles.paymentOptions}>
             <button style={styles.paymentButton}>PhonePay</button>
             <button style={styles.paymentButton}>Google Pay (GPay)</button>
-            <button style={styles.paymentButton}>UPI</button>
+            <button style={styles.paymentButton} onClick={handleUPIClick}>UPI</button>
           </div>
         </div>
       )}
+
+      {/* Display UPI QR Code if UPI is selected */}
+      {upiQR && (
+        <div style={styles.qrCodeContainer}>
+          <h2>Scan to Pay via UPI</h2>
+          <img id="upiQR" alt="UPI QR Code" width="250" height="250" src={upiQR} />
+        </div>
+      )}
+      {/* Payment Confirmation Checkbox */}
+      <div style={styles.formContainer}>
+        <input
+          type="checkbox"
+          checked={paymentConfirmed}
+          onChange={handlePaymentConfirmationChange}
+          id="paymentConfirmed"
+          style={styles.checkbox}
+        />
+        <label htmlFor="paymentConfirmed" style={styles.label}>Confirm Payment</label>
+      </div>
 
       {/* Error Message */}
       {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}
@@ -274,6 +280,10 @@ const styles = {
     borderRadius: '4px',
     cursor: 'pointer',
     fontSize: '14px',
+  },
+  qrCodeContainer: {
+    textAlign: 'center',
+    marginTop: '20px',
   },
 };
 

@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const NewsEvents = () => {
+  const { t } = useTranslation();
+
   return (
     <div style={{
       padding: '4rem 2rem',
@@ -17,7 +20,7 @@ const NewsEvents = () => {
         position: 'relative',
         display: 'inline-block',
       }}>
-        🕉️ Hanuman Jayanti 2025
+        🕉️ {t('newsEvent.title')}
         <div style={{
           width: '80px',
           height: '3px',
@@ -25,27 +28,26 @@ const NewsEvents = () => {
           margin: '0.5rem auto',
         }}></div>
       </h1>
+
       <p style={{ fontSize: '1.3rem', color: '#333', lineHeight: '1.8' }}>
-        🗓️ Date: Saturday, April 12, 2025
-        <br />
-        ⏰ Auspicious Time: Morning 7:35 AM – 9:11 AM
-        <br />
-        📍 Location: Sri Anjaneya Swami Temple
+        🗓️ {t('newsEvent.date')}<br />
+        ⏰ {t('newsEvent.time')}<br />
+        📍 {t('newsEvent.location')}
       </p>
+
       <p style={{ fontSize: '1.3rem', color: '#333', lineHeight: '1.8' }}>
-        🙏 Join us in celebrating the birth of Lord Hanuman, a day of devotion and spiritual rejuvenation.
-        <br />
-        🕉️ Participate in the recitation of the Hanuman Chalisa, Ramayana, and offer prayers for strength and protection.
-        <br />
-        🍽️ Enjoy prasad and community feasts as we come together in faith and unity.
+        🙏 {t('newsEvent.description1')}<br />
+        🕉️ {t('newsEvent.description2')}<br />
+        🍽️ {t('newsEvent.description3')}
       </p>
+
       <p style={{
         fontSize: '1.1rem',
         color: '#8e1e1a',
         fontStyle: 'italic',
         marginTop: '2rem',
       }}>
-        Stay tuned for more exciting updates and events!
+        {t('newsEvent.stayTuned')}
       </p>
     </div>
   );

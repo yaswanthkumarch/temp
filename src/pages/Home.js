@@ -1,125 +1,113 @@
-// import React from 'react';
-
-// const Home = () => {
-//   return (
-//     <div className="home">
-//       <h1>Welcome to Ragiguddada Temple</h1>
-//       <p>The Bhaktha of Bhakthas</p>
-//       <section>
-//         <h2>Hanuman - The embodiment of Bhakthi</h2>
-//         <p>Hanuman is worshipped for health, wealth, happiness, and success.</p>
-//       </section>
-      
-//       <section>
-//         <h2>Pooja Timings</h2>
-//         <table>
-//           <thead>
-//             <tr>
-//               <th>Days</th>
-//               <th>Timings</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             <tr>
-//               <td>Monday - Friday</td>
-//               <td>8:00 am - 11:30 am</td>
-//             </tr>
-//             <tr>
-//               <td>Saturday</td>
-//               <td>8:00 am - 12:30 pm</td>
-//             </tr>
-//             <tr>
-//               <td>Sunday</td>
-//               <td>8:00 am - 12:30 pm</td>
-//             </tr>
-//           </tbody>
-//         </table>
-//       </section>
-//     </div>
-//   );
-// };
-
-// export default Home;
-
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';  // Import the translation hook
 
 const Home = () => {
+  const { t } = useTranslation();  // Get the translation function
+  const navigate = useNavigate();
+
   return (
     <div style={styles.container}>
-      {/* Carousel Section */}
-      {/* <Carousel showArrows={true} autoPlay={true} infiniteLoop={true} interval={5000}>
-        <div>
-          <img src="temple-1.png" alt="Temple Image 1" />
-          <p className="legend">Temple Event 1</p>
-        </div>
-        <div>
-          <img src="temple-2.png" alt="Temple Image 2" />
-          <p className="legend">Temple Event 2</p>
-        </div>
-        <div>
-          <img src="temple-1.png" alt="Temple Image 3" />
-          <p className="legend">Temple Event 3</p>
-        </div>
-        <div>
-          <img src="temple-2.png" alt="Temple Image 3" />
-          <p className="legend">Temple Event 3</p>
-        </div>
-      </Carousel> */}
-
-      {/* Main Content Section */}
-      <div style={styles.contentWrapper}>
-        {/* Text Content */}
-        <div style={styles.textColumn}>
-          <h1 style={styles.heading}>
-            <span style={styles.highlight}>Welcome to</span>
-            Sri Anjaneya Swami Temple
-          </h1>
-          <p style={styles.paragraph}>
-            Discover a sacred space of devotion and tradition. Join our vibrant community in spiritual celebrations,
-            charitable events, and the preservation of ancient Vedic rituals.
-          </p>
-          <div style={styles.buttonGroup}>
-            <NavLink to="/seva-list">
-              <button style={styles.primaryButton}>Explore Services</button>
-            </NavLink>
-            <NavLink to="/tour-of-temple">
-              <button style={styles.secondaryButton}>Virtual Tour</button>
-            </NavLink>
+      {/* 🛕 Welcome Section */}
+      <section style={styles.welcomeSection}>
+        <div style={styles.contentWrapper}>
+          <div style={styles.textColumn}>
+            <h1 style={styles.heading}>
+              <span style={styles.highlight}>{t('welcomeTo')}</span>
+             {t('Sri Anjaneya Swami Temple')}
+            </h1>
+            <p style={styles.paragraph}>
+              {t('discoverSacredSpace')}
+            </p>
+            <div style={styles.buttonGroup}>
+              <button style={styles.primaryButton} onClick={() => navigate('/seva-list')}>
+                {t('exploreServices')}
+              </button>
+              <button style={styles.secondaryButton} onClick={() => navigate('/tour-of-temple')}>
+                {t('virtualTour')}
+              </button>
+            </div>
+          </div>
+          <div style={styles.imageColumn}>
+            <img src="temple-1.png" alt="Temple" style={styles.image} />
           </div>
         </div>
+      </section>
 
-        {/* Image Section */}
-        <div style={styles.imageColumn}>
-          <img src="temple-1.png" alt="Temple" style={styles.image} />
-        </div>
-      </div>
+      {/* ✨ Scrollable Attractive Sections One After Another */}
+      <Section
+        icon="📰"
+        title={t('newsAndEvents')}
+        desc={t('stayUpdated')}
+        button={t('readMore')}
+        bg="#fff4e6"
+        onClick={() => navigate('/news-events')}
+      />
+
+      <Section
+        icon="🖼️"
+        title={t('photoGallery')}
+        desc={t('exploreCollection')}
+        button={t('viewGallery')}
+        bg="#fefefe"
+        onClick={() => navigate('/photo-gallery')}
+      />
+
+      <Section
+        icon="🙋"
+        title={t('volunteer')}
+        desc={t('joinSeva')}
+        button={t('joinUs')}
+        bg="#fff4e6"
+        onClick={() => navigate('/volunteer')}
+      />
+
+      <Section
+        icon="💰"
+        title={t('donate')}
+        desc={t('supportTemple')}
+        button={t('donateNow')}
+        bg="#fefefe"
+        onClick={() => navigate('/donate')}
+      />
     </div>
+  );
+};
+
+// 🧩 Reusable Section Component
+const Section = ({ icon, title, desc, button, onClick, bg }) => {
+  return (
+    <section style={{ ...styles.section, backgroundColor: bg }}>
+      <h2 style={styles.sectionTitle}>{icon} {title}</h2>
+      <p style={styles.sectionDesc}>{desc}</p>
+      <button style={styles.actionButton} onClick={onClick}>{button}</button>
+    </section>
   );
 };
 
 const styles = {
   container: {
-    minHeight: '100vh',
+    fontFamily: 'Segoe UI, sans-serif',
+    scrollBehavior: 'smooth',
+  },
+
+  // Welcome Section
+  welcomeSection: {
     background: 'linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)',
+    padding: '1rem 1rem',
   },
   contentWrapper: {
     display: 'flex',
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '2rem',
+    gap: '2rem',
   },
   textColumn: {
-    flex: 1,
-    padding: '2rem',
-    maxWidth: '500px',
-  },
-  imageColumn: {
-    flex: 1,
-    padding: '2rem',
+    flex: '1',
+    maxWidth: '1500px',
+    animation: 'fadeInUp 1s ease-in-out',
   },
   heading: {
     fontSize: '3rem',
@@ -127,14 +115,16 @@ const styles = {
     color: '#2a2a2a',
   },
   highlight: {
-    color: '#c54b24',
+    display: 'block',
     fontSize: '1.5rem',
     fontWeight: '400',
+    color: '#c54b24',
+    marginBottom: '0.5rem',
   },
   paragraph: {
     fontSize: '1.2rem',
-    lineHeight: '1.8',
     color: '#4a4a4a',
+    lineHeight: '1.8',
   },
   buttonGroup: {
     display: 'flex',
@@ -144,26 +134,61 @@ const styles = {
   primaryButton: {
     background: '#c54b24',
     color: 'white',
-    border: 'none',
     padding: '1rem 2rem',
     borderRadius: '30px',
     fontSize: '1rem',
+    border: 'none',
     cursor: 'pointer',
+    transition: 'all 0.3s ease',
   },
   secondaryButton: {
-    background: 'transparent',
-    color: '#2a2a2a',
-    border: '2px solid #2a2a2a',
+    background: 'transparent',  // No background
+    color: '#2a2a2a',  // Text color
+    border: 'none',  // Remove border
     padding: '1rem 2rem',
     borderRadius: '30px',
     fontSize: '1rem',
     cursor: 'pointer',
+    transition: 'all 0.3s ease',
+  },
+  imageColumn: {
+    flex: '1',
   },
   image: {
     width: '100%',
-    height: 'auto',
-    borderRadius: '10px',
+    maxWidth: '750px',
+    borderRadius: '12px',
     boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+    animation: 'fadeIn 1.5s ease-in-out',
+  },
+
+  // Section Styles
+  section: {
+    padding: '4rem 2rem',
+    textAlign: 'center',
+    transition: 'all 0.3s ease-in-out',
+  },
+  sectionTitle: {
+    fontSize: '2rem',
+    fontWeight: '700',
+    marginBottom: '1rem',
+    color: '#c54b24',
+  },
+  sectionDesc: {
+    fontSize: '1.1rem',
+    color: '#555',
+    maxWidth: '600px',
+    margin: '0 auto 2rem',
+  },
+  actionButton: {
+    background: '#c54b24',
+    color: '#fff',
+    padding: '0.75rem 2rem',
+    border: 'none',
+    borderRadius: '30px',
+    fontSize: '1rem',
+    cursor: 'pointer',
+    transition: 'background 0.3s ease',
   },
 };
 

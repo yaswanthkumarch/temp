@@ -53,7 +53,7 @@ const History = () => {
         marginTop: '3rem',
         textAlign: 'center',
       }}>
-        <img 
+        {/* <img 
           src="temple-2.png" 
           alt="Hanuman Temple" 
           style={{
@@ -63,7 +63,7 @@ const History = () => {
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.15)',
             margin: '0 auto',
           }}
-        />
+        /> */}
       </div>
     </div>
   );
