@@ -353,22 +353,26 @@ const Home = () => {
         onClick={() => navigate('/seva-list')}
       />
                       <Section
-      icon="📿"
-      title={t('Seva List & Booking')}
-      desc={
-        <>
-          Experience spiritual bliss by booking your preferred sevas at Hanuman Temple.
-          <ul style={{ marginTop: '0.5rem', paddingLeft: '1.2rem' }}>
-            {sevas.map((seva, i) => (
-              <li key={i}>{seva}</li>
-            ))}
-          </ul>
-        </>
-      }
-      button={<DropdownBooking />}
-      bg="#fff3cd"
-      onClick={() => {}}
-    />
+  icon="📿"
+  title={t('Seva List & Booking')}
+  desc={
+    <>
+      Experience spiritual bliss by booking your preferred sevas at Hanuman Temple.
+
+      <div style={{ marginTop: '0.5rem' }}>
+        {/* Dropdown to select/view sevas */}
+        <DropdownBooking sevas={sevas} />
+      </div>
+
+      {/* Booking button or area below the dropdown */}
+      <div style={{ marginTop: '1rem' }}>
+        <button onClick={handleBooking}>Book Now</button>
+      </div>
+    </>
+  }
+  bg="#fff3cd"
+  onClick={() => {}}
+/>
                   
       <Section
         icon="📰"
