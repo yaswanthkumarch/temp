@@ -233,6 +233,9 @@ const Home = () => {
     'temple-1.png',
     'temple-2.png',
     'temple-3.jpg',
+    'img-1.jpg',
+    'img-2.jpg',
+    'img-3.jpg'
   ];
 
   return (
