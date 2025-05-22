@@ -67,24 +67,35 @@ const SevaList = () => {
 
   const isFormValid = userName && selectedSeva && selectedDate && gotra && paymentConfirmed;
 
-  const validateForm = () => {
-    if (!userName || !selectedSeva || !selectedDate || !gotra || !paymentConfirmed) {
-      setErrorMessage('Please fill all fields and confirm the payment before proceeding.');
-    } else {
-      setErrorMessage('');
-    }
-  };
-
   const handleUPIClick = () => {
     // Generate the UPI link and create the QR code
     const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%kumar&am=${amount}&cu=INR`;
     const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}`;
     setUpiQR(qrURL);
   };
+const handlePhonePayClick = () => {
+    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR`;
+    window.open(upiLink, '_blank');
+  };
+
+  // Handle UPI Link Generation for Google Pay (GPay)
+  const handleGPayClick = () => {
+    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR`;
+    window.open(upiLink, '_blank');
+  };
 
   useEffect(() => {
-    validateForm();
-  }, [userName, selectedSeva, selectedDate, gotra, paymentConfirmed]);
+    const validateForm = () => {
+      if (!userName || !selectedSeva || !selectedDate || !gotra || !paymentConfirmed) {
+        setErrorMessage('Please fill all fields and confirm the payment before proceeding.');
+      } else {
+        setErrorMessage('');
+      }
+    };
+
+    validateForm(); // Call validateForm inside useEffect
+
+  }, [userName, selectedSeva, selectedDate, gotra, paymentConfirmed]); // Dependencies to trigger the effect
 
   return (
     <div style={styles.container}>
@@ -147,8 +158,6 @@ const SevaList = () => {
         </select>
       </div>
 
-      
-
       {/* Confirmation Message */}
       {confirmationMessage && <p style={styles.confirmationMessage}>{confirmationMessage}</p>}
 
@@ -158,8 +167,8 @@ const SevaList = () => {
           <p style={styles.paymentText}>Payment Amount for {selectedSeva}: ₹{amount}</p>
           <p style={styles.paymentText}>Choose a Payment Method:</p>
           <div style={styles.paymentOptions}>
-            <button style={styles.paymentButton}>PhonePay</button>
-            <button style={styles.paymentButton}>Google Pay (GPay)</button>
+            <button style={styles.paymentButton}onClick={handlePhonePayClick}>PhonePay</button>
+            <button style={styles.paymentButton}onClick={handleGPayClick}>Google Pay (GPay)</button>
             <button style={styles.paymentButton} onClick={handleUPIClick}>UPI</button>
           </div>
         </div>
@@ -172,6 +181,7 @@ const SevaList = () => {
           <img id="upiQR" alt="UPI QR Code" width="250" height="250" src={upiQR} />
         </div>
       )}
+
       {/* Payment Confirmation Checkbox */}
       <div style={styles.formContainer}>
         <input

@@ -260,14 +260,16 @@ ${t('email')}: ${form.email}`;
           <div style={styles.qrSection}>
             <h4 style={styles.qrHeader}>📱 {t('scanPay')}</h4>
             <img src={qrUrl} alt="UPI QR Code" style={styles.qrImage} />
-           
             
             <div style={styles.paymentButtons}>
+              {/* Pay via UPI */}
               <a href={upiLink} style={styles.paymentLink}>Pay via UPI</a>
-              <a href={`phonepe://pay?url=${encodeURIComponent(upiLink)}`} style={styles.paymentLink}>Pay via PhonePe</a>
-              <a href={`tez://upi/pay?url=${encodeURIComponent(upiLink)}`} style={styles.paymentLink}>Pay via GPay</a>
+              {/* Pay via PhonePe */}
+              <a href={`upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${form.amount}&cu=INR`} style={styles.paymentLink}>Pay via PhonePe</a>
+              {/* Pay via Google Pay */}
+              <a href={`upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${form.amount}&cu=INR`} style={styles.paymentLink}>Pay via Google Pay</a>
             </div>
-             <p style={styles.instructions}>{t('afterPaymentNote')}</p>
+            <p style={styles.instructions}>{t('afterPaymentNote')}</p>
 
             <p style={styles.confirmationText}>{confirmationMessage}</p>
 

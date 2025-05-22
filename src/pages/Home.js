@@ -29,11 +29,19 @@ const Home = () => {
 
       {/* ✨ Scrollable Attractive Sections One After Another */}
 
-<Section
+{/* <Section
   icon="📿"
   title="Seva List & Booking"
   desc="Experience spiritual bliss by booking your preferred sevas at the Hanuman Temple. From daily Archana to special Utsavams, participate in sacred rituals, offer prayers, and receive divine blessings. Limited slots available — book your seva now!"
   button="Book Seva"
+  bg="#fff3cd"
+  onClick={() => navigate('/seva-list')}
+/> */}
+<Section
+  icon="📿"
+  title={t('title')}
+  desc={t('desc')}
+  button={t('button')}
   bg="#fff3cd"
   onClick={() => navigate('/seva-list')}
 />
