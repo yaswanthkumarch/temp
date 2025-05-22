@@ -87,18 +87,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 const images = [
-  { src: '/temple-1.png', title: 'Temple One' },
-  { src: '/temple-1.png', title: 'Temple Two' },
-  { src: '/temple-1.png', title: 'Temple Three' },
-  { src: '/img-1.jpg', title: 'Temple Four' },
-  { src: '/img-1.jpg', title: 'Temple Five' },
-  { src: '/img-1.jpg', title: 'Temple Six' },
-   { src: '/img-2.jpg', title: 'Temple One' },
-  { src: '/img-2.jpg', title: 'Temple Two' },
-  { src: '/img-2.jpg', title: 'Temple Three' },
-  { src: '/temple-3.jpg', title: 'Temple Four' },
-  { src: '/temple-3.jpg', title: 'Temple Five' },
-  { src: '/temple-3.jpg', title: 'Temple Six' },
+  { src: '/temple-1.png', title: '' },
+  { src: '/temple-1.png', title: '' },
+  { src: '/temple-1.png', title: '' },
+  { src: '/img-1.jpg', title: '' },
+  { src: '/img-1.jpg', title: '' },
+  { src: '/img-1.jpg', title: '' },
+   { src: '/img-2.jpg', title: '' },
+  { src: '/img-2.jpg', title: '' },
+  { src: '/img-2.jpg', title: '' },
+  { src: '/temple-3.jpg', title: '' },
+  { src: '/temple-3.jpg', title: '' },
+  { src: '/temple-3.jpg', title: '' },
 ];
 
 const PhotoGallery = () => {
