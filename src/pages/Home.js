@@ -205,6 +205,80 @@
 // export default Home;
 
 
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const sevas = [
+  "Autismeka Seva",
+  "Salapsranama Archana",
+  "Vastra Seva",
+  "Gotra Entry",
+  "Chaturveda Prabandha",
+  "Rudrabhishekam",
+];
+
+const DropdownBooking = () => {
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSelect = (seva) => {
+    setOpen(false);
+    navigate(`/seva-list?seva=${encodeURIComponent(seva)}`);
+  };
+
+  return (
+    <div style={{ position: 'relative', display: 'inline-block' }}>
+      <button
+        onClick={() => setOpen(!open)}
+        style={{
+          backgroundColor: '#f59e0b',
+          color: 'white',
+          border: 'none',
+          padding: '0.5rem 1.2rem',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+        }}
+      >
+        Booking
+      </button>
+      {open && (
+        <ul
+          style={{
+            position: 'absolute',
+            top: '110%',
+            left: 0,
+            backgroundColor: '#fff',
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+            borderRadius: '5px',
+            listStyle: 'none',
+            padding: '0.5rem 0',
+            margin: 0,
+            width: '200px',
+            zIndex: 1000,
+          }}
+        >
+          {sevas.map((seva, index) => (
+            <li
+              key={index}
+              onClick={() => handleSelect(seva)}
+              style={{
+                padding: '0.5rem 1rem',
+                cursor: 'pointer',
+                borderBottom: '1px solid #eee',
+              }}
+              onMouseDown={e => e.preventDefault()} // prevent focus loss
+            >
+              {seva}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+
 
 
 
@@ -275,26 +349,24 @@ const Home = () => {
         bg="#fff3cd"
         onClick={() => navigate('/seva-list')}
       />
-                  <Section
-  icon="📿"
-  title={t('title')}
-  desc={
-    <>
-      {t('desc')}
-      <ul style={{ marginTop: '0.5rem', paddingLeft: '1.2rem' }}>
-        <li>Autismeka Seva</li>
-        <li>Salapsranama Archana</li>
-        <li>Vastra Seva</li>
-        <li>Gotra Entry</li>
-        <li>Chaturveda Prabandha</li>
-        <li>Rudrabhishekam</li>
-      </ul>
-    </>
-  }
-  button={t('button')}
-  bg="#fff3cd"
-  onClick={() => navigate('/seva-list')}
-/>
+                      <Section
+      icon="📿"
+      title={t('Seva List & Booking')}
+      desc={
+        <>
+          Experience spiritual bliss by booking your preferred sevas at Hanuman Temple.
+          <ul style={{ marginTop: '0.5rem', paddingLeft: '1.2rem' }}>
+            {sevas.map((seva, i) => (
+              <li key={i}>{seva}</li>
+            ))}
+          </ul>
+        </>
+      }
+      button={<DropdownBooking />}
+      bg="#fff3cd"
+      onClick={() => {}}
+    />
+                  
       <Section
         icon="📰"
         title={t('newsAndEvents')}
