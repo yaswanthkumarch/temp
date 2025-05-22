@@ -74,13 +74,13 @@ const SevaList = () => {
     setUpiQR(qrURL);
   };
 const handlePhonePayClick = () => {
-    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR`;
+    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR#Intent;scheme=upi;package=com.phonepe.app;end`;
     window.open(upiLink, '_blank');
   };
 
   // Handle UPI Link Generation for Google Pay (GPay)
   const handleGPayClick = () => {
-    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR`;
+    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
     window.open(upiLink, '_blank');
   };
 
@@ -183,16 +183,18 @@ const handlePhonePayClick = () => {
       )}
 
       {/* Payment Confirmation Checkbox */}
-      <div style={styles.formContainer}>
-        <input
-          type="checkbox"
-          checked={paymentConfirmed}
-          onChange={handlePaymentConfirmationChange}
-          id="paymentConfirmed"
-          style={styles.checkbox}
-        />
-        <label htmlFor="paymentConfirmed" style={styles.label}>Confirm Payment</label>
-      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+  <input
+    type="checkbox"
+    checked={paymentConfirmed}
+    onChange={handlePaymentConfirmationChange}
+    id="paymentConfirmed"
+    style={{ margin: 0 }}
+  />
+  <label htmlFor="paymentConfirmed" style={{ margin: 0 }}>
+    Confirm Payment
+  </label>
+</div>
 
       {/* Error Message */}
       {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}
