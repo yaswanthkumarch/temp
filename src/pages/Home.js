@@ -220,71 +220,8 @@ const sevas = [
   "Rudrabhishekam",
 ];
 
-const DropdownBooking = () => {
-  const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
 
-  const handleSelect = (seva) => {
-    setOpen(false);
-    navigate(`/seva-list?seva=${encodeURIComponent(seva)}`);
-  };
 
-  return (
-    <div style={{ position: 'relative', display: 'inline-block' }}>
-      <button
-        onClick={() => setOpen(!open)}
-        style={{
-          backgroundColor: '#f59e0b',
-          color: 'white',
-          border: 'none',
-          padding: '0.5rem 1.2rem',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          fontWeight: 'bold',
-        }}
-      >
-        Booking
-      </button>
-      {open && (
-        <ul
-          style={{
-            position: 'absolute',
-            top: '110%',
-            left: 0,
-            backgroundColor: '#fff',
-            boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-            borderRadius: '5px',
-            listStyle: 'none',
-            padding: '0.5rem 0',
-            margin: 0,
-            width: '200px',
-            zIndex: 1000,
-          }}
-        >
-          {sevas.map((seva, index) => (
-            <li
-              key={index}
-              onClick={() => handleSelect(seva)}
-              style={{
-                padding: '0.5rem 1rem',
-                cursor: 'pointer',
-                borderBottom: '1px solid #eee',
-              }}
-              onMouseDown={e => e.preventDefault()} // prevent focus loss
-            >
-              {seva}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
-
-const handleBooking = () => {
-  // Your booking logic here
-  alert('Booking initiated!');
-};
 
 
 
@@ -301,7 +238,7 @@ const Home = () => {
     dots: false,
     infinite: true,
     speed: 1000,
-    autoplay: true,
+  autoplay: true,
     autoplaySpeed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
