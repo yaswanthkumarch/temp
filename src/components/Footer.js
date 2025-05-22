@@ -24,7 +24,7 @@ const Footer = () => {
           <form className={styles.form} onSubmit={handleSubmit}>
             <input
               type="email"
-              placeholder={t('footer.placeholder')}
+              placeholder={t('footer.emailPlaceholder')}
               required
             />
             <button type="submit">{t('footer.subscribe')}</button>
