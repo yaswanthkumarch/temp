@@ -275,6 +275,26 @@ const Home = () => {
         bg="#fff3cd"
         onClick={() => navigate('/seva-list')}
       />
+                  <Section
+  icon="📿"
+  title={t('title')}
+  desc={
+    <>
+      {t('desc')}
+      <ul style={{ marginTop: '0.5rem', paddingLeft: '1.2rem' }}>
+        <li>Autismeka Seva</li>
+        <li>Salapsranama Archana</li>
+        <li>Vastra Seva</li>
+        <li>Gotra Entry</li>
+        <li>Chaturveda Prabandha</li>
+        <li>Rudrabhishekam</li>
+      </ul>
+    </>
+  }
+  button={t('button')}
+  bg="#fff3cd"
+  onClick={() => navigate('/seva-list')}
+/>
       <Section
         icon="📰"
         title={t('newsAndEvents')}
