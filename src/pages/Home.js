@@ -207,7 +207,10 @@
 
 //import React, { useState } from 'react';
 //import { useNavigate } from 'react-router-dom';
-
+import React, { useState } from 'react';
+import Slider from 'react-slick';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 const sevas = [
   "Autismeka Seva",
   "Salapsranama Archana",
@@ -282,10 +285,10 @@ const DropdownBooking = () => {
 
 
 
-import React from 'react';
-import Slider from 'react-slick';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+//import React from 'react';
+//import Slider from 'react-slick';
+//import { useNavigate } from 'react-router-dom';
+//import { useTranslation } from 'react-i18next';
 
 const Home = () => {
   const { t } = useTranslation();
