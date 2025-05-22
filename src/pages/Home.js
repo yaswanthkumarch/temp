@@ -205,8 +205,8 @@
 // export default Home;
 
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+//import React, { useState } from 'react';
+//import { useNavigate } from 'react-router-dom';
 
 const sevas = [
   "Autismeka Seva",
