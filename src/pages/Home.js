@@ -222,7 +222,7 @@ const Home = () => {
     infinite: true,
     speed: 1000,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
@@ -231,7 +231,7 @@ const Home = () => {
 
   const carouselImages = [
     'temple-1.png',
-    'temple-2.jpg',
+    'temple-2.png',
     'temple-3.jpg',
   ];
 

@@ -93,12 +93,12 @@ const images = [
   { src: '/temple-1.png', title: 'Temple Four' },
   { src: '/temple-1.png', title: 'Temple Five' },
   { src: '/temple-1.png', title: 'Temple Six' },
-   { src: '/temple-1.png', title: 'Temple One' },
-  { src: '/temple-1.png', title: 'Temple Two' },
-  { src: '/temple-1.png', title: 'Temple Three' },
-  { src: '/temple-1.png', title: 'Temple Four' },
-  { src: '/temple-1.png', title: 'Temple Five' },
-  { src: '/temple-1.png', title: 'Temple Six' },
+   { src: '/temple-3.jpg', title: 'Temple One' },
+  { src: '/temple-3.jpg', title: 'Temple Two' },
+  { src: '/temple-3.jpg', title: 'Temple Three' },
+  { src: '/temple-3.jpg', title: 'Temple Four' },
+  { src: '/temple-3.jpg', title: 'Temple Five' },
+  { src: '/temple-3.jpg', title: 'Temple Six' },
 ];
 
 const PhotoGallery = () => {
