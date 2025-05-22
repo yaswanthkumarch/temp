@@ -347,34 +347,59 @@ const Home = () => {
       </section>
 
       {/* ✨ Scrollable Sections */}
-      <Section
-        icon="📿"
-        title={t('title')}
-        desc={t('desc')}
-        button={t('button')}
-        bg="#fff3cd"
-        onClick={() => navigate('/seva-list')}
-      />
+      
                       <Section
   icon="📿"
   title={t('Seva List & Booking')}
   desc={
     <>
-      Experience spiritual bliss by booking your preferred sevas at Hanuman Temple.
+      <p style={{ fontWeight: 'bold', fontSize: '1.1rem', color: '#555' }}>
+        Experience spiritual bliss by booking your preferred Sevas at Hanuman Temple.
+      </p>
 
-      <div style={{ marginTop: '0.5rem' }}>
-        {/* Dropdown to select/view sevas */}
-        <DropdownBooking sevas={sevas} />
+      {/* Colorful list of Sevas */}
+      <div style={{ 
+        display: 'flex', 
+        flexWrap: 'wrap', 
+        gap: '1rem', 
+        marginTop: '1rem' 
+      }}>
+        {sevas.map((seva, index) => (
+          <div key={index} style={{
+            background: '#fff7e6',
+            padding: '1rem',
+            borderRadius: '12px',
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+            flex: '1 1 200px',
+            textAlign: 'center',
+            color: '#8b4513',
+            fontWeight: 'bold',
+          }}>
+            {seva.name}
+          </div>
+        ))}
       </div>
 
-      {/* Booking button or area below the dropdown */}
-      <div style={{ marginTop: '1rem' }}>
-        <button onClick={handleBooking}>Book Now</button>
+      {/* Navigation Button */}
+      <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+        <button 
+          onClick={() => navigate('/sevas')}
+          style={{
+            padding: '0.75rem 1.5rem',
+            backgroundColor: '#ff9800',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '8px',
+            fontSize: '1rem',
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}
+        >
+          Book Now
+        </button>
       </div>
     </>
   }
-  bg="#fff3cd"
-  onClick={() => {}}
 />
                   
       <Section
@@ -382,7 +407,59 @@ const Home = () => {
         title={t('newsAndEvents')}
         desc={t('stayUpdated')}
         button={t('readMore')}
-        bg="#fff4e6"
+   <Section
+  icon="📿"
+  title={t('Seva List & Booking')}
+  desc={
+    <>
+      <p style={{ fontWeight: 'bold', fontSize: '1.1rem', color: '#555' }}>
+        Experience spiritual bliss by booking your preferred Sevas at Hanuman Temple.
+      </p>
+
+      {/* Colorful list of Sevas */}
+      <div style={{ 
+        display: 'flex', 
+        flexWrap: 'wrap', 
+        gap: '1rem', 
+        marginTop: '1rem' 
+      }}>
+        {sevas.map((seva, index) => (
+          <div key={index} style={{
+            background: '#fff7e6',
+            padding: '1rem',
+            borderRadius: '12px',
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+            flex: '1 1 200px',
+            textAlign: 'center',
+            color: '#8b4513',
+            fontWeight: 'bold',
+          }}>
+            {seva.name}
+          </div>
+        ))}
+      </div>
+
+      {/* Navigation Button */}
+      <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+        <button 
+          onClick={() => navigate('/sevas')}
+          style={{
+            padding: '0.75rem 1.5rem',
+            backgroundColor: '#ff9800',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '8px',
+            fontSize: '1rem',
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}
+        >
+          Book Now
+        </button>
+      </div>
+    </>
+  }
+/     bg="#fff4e6"
         onClick={() => navigate('/news-events')}
       />
       <Section
