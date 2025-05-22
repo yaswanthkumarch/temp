@@ -19,14 +19,7 @@ const Home = () => {
             <p style={styles.paragraph}>
               {t('discoverSacredSpace')}
             </p>
-            <div style={styles.buttonGroup}>
-              <button style={styles.primaryButton} onClick={() => navigate('/seva-list')}>
-                {t('exploreServices')}
-              </button>
-              <button style={styles.secondaryButton} onClick={() => navigate('/tour-of-temple')}>
-                {t('virtualTour')}
-              </button>
-            </div>
+            
           </div>
           <div style={styles.imageColumn}>
             <img src="temple-1.png" alt="Temple" style={styles.image} />
@@ -35,6 +28,15 @@ const Home = () => {
       </section>
 
       {/* ✨ Scrollable Attractive Sections One After Another */}
+
+<Section
+  icon="📿"
+  title="Seva List & Booking"
+  desc="Experience spiritual bliss by booking your preferred sevas at the Hanuman Temple. From daily Archana to special Utsavams, participate in sacred rituals, offer prayers, and receive divine blessings. Limited slots available — book your seva now!"
+  button="Book Seva"
+  bg="#fff3cd"
+  onClick={() => navigate('/seva-list')}
+/>
       <Section
         icon="📰"
         title={t('newsAndEvents')}
