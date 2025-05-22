@@ -281,7 +281,10 @@ const DropdownBooking = () => {
   );
 };
 
-
+const handleBooking = () => {
+  // Your booking logic here
+  alert('Booking initiated!');
+};
 
 
 
