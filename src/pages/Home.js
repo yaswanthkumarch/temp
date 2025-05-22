@@ -207,7 +207,7 @@
 
 //import React, { useState } from 'react';
 //import { useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
