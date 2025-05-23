@@ -552,14 +552,14 @@ const hanumanSevas = [
          bg="#fff4e6"
         onClick={() => navigate('/news-events')}
       />
-      <Section
+                  {/*  <Section
         icon="🖼️"
         title={t('photoGallery')}
         desc={t('exploreCollection')}
         button={t('viewGallery')}
         bg="#fefefe"
         onClick={() => navigate('/photo-gallery')}
-      />
+      />*/}
       <Section
         icon="🙋"
         title={t('volunteer')}
