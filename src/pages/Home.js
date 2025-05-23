@@ -211,14 +211,6 @@ import React from 'react';
 import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-const sevas = [
-  "Autismeka Seva",
-  "Salapsranama Archana",
-  "Vastra Seva",
-  "Gotra Entry",
-  "Chaturveda Prabandha",
-  "Rudrabhishekam",
-];
 
 
 
@@ -532,59 +524,7 @@ const hanumanSevas = [
 
 
       
-                      <Section
-  icon="📿"
-  title={t('Seva List & Booking')}
-  desc={
-    <>
-      <p style={{ fontWeight: 'bold', fontSize: '1.1rem', color: '#555' }}>
-        Experience spiritual bliss by booking your preferred Sevas at Hanuman Temple.
-      </p>
-
-      {/* Colorful list of Sevas */}
-      <div style={{ 
-        display: 'flex', 
-        flexWrap: 'wrap', 
-        gap: '1rem', 
-        marginTop: '1rem' 
-      }}>
-        {sevas.map((seva, index) => (
-          <div key={index} style={{
-            background: '#fff7e6',
-            padding: '1rem',
-            borderRadius: '12px',
-            boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-            flex: '1 1 200px',
-            textAlign: 'center',
-            color: '#8b4513',
-            fontWeight: 'bold',
-          }}>
-            {seva.name}
-          </div>
-        ))}
-      </div>
-
-      {/* Navigation Button */}
-      <div style={{ marginTop: '2rem', textAlign: 'center' }}>
-        <button 
-          onClick={() => navigate('/sevas')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            backgroundColor: '#ff9800',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '1rem',
-            cursor: 'pointer',
-            fontWeight: 'bold'
-          }}
-        >
-          Book Now
-        </button>
-      </div>
-    </>
-  }
-/>
+   
 
       <Section
         icon="📰"
