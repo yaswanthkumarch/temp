@@ -85,14 +85,19 @@ const SevaList = () => {
     const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}`;
     setUpiQR(qrURL);
   };
+<<<<<<< HEAD
 
   const handlePhonePayClick = () => {
     const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR`;
+=======
+const handlePhonePayClick = () => {
+    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR#Intent;scheme=upi;package=com.phonepe.app;end`;
+>>>>>>> bcef800bcc53e2abfa55ef1af2fdb08aad908e89
     window.open(upiLink, '_blank');
   };
 
   const handleGPayClick = () => {
-    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR`;
+    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
     window.open(upiLink, '_blank');
   };
 
@@ -196,6 +201,7 @@ const SevaList = () => {
         </div>
       )}
 
+<<<<<<< HEAD
       {/* UPI QR Code */}
       {upiQR && (
         <div style={styles.qrCodeContainer}>
@@ -203,6 +209,21 @@ const SevaList = () => {
           <img alt="UPI QR Code" width="250" height="250" src={upiQR} />
         </div>
       )}
+=======
+      {/* Payment Confirmation Checkbox */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+  <input
+    type="checkbox"
+    checked={paymentConfirmed}
+    onChange={handlePaymentConfirmationChange}
+    id="paymentConfirmed"
+    style={{ margin: 0 }}
+  />
+  <label htmlFor="paymentConfirmed" style={{ margin: 0 }}>
+    Confirm Payment
+  </label>
+</div>
+>>>>>>> bcef800bcc53e2abfa55ef1af2fdb08aad908e89
 
       {/* Error Message */}
       {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}

@@ -87,6 +87,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 const images = [
+<<<<<<< HEAD
   { src: '/temple-1.png' },
   { src: '/temple-1.png' },
   { src: '/temple-1.jpg' },
@@ -99,6 +100,20 @@ const images = [
   { src: '/img-1.jpg' },
   { src: '/img-1.jpg' },
   { src: '/temple-3.jpg' },
+=======
+  { src: '/temple-1.png', title: '' },
+  { src: '/temple-1.png', title: '' },
+  { src: '/temple-1.png', title: '' },
+  { src: '/img-1.jpg', title: '' },
+  { src: '/img-1.jpg', title: '' },
+  { src: '/img-1.jpg', title: '' },
+   { src: '/img-2.jpg', title: '' },
+  { src: '/img-2.jpg', title: '' },
+  { src: '/img-2.jpg', title: '' },
+  { src: '/temple-3.jpg', title: '' },
+  { src: '/temple-3.jpg', title: '' },
+  { src: '/temple-3.jpg', title: '' },
+>>>>>>> bcef800bcc53e2abfa55ef1af2fdb08aad908e89
 ];
 
 const PhotoGallery = () => {
