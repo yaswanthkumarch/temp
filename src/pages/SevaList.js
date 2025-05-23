@@ -205,7 +205,7 @@ const SevaList = () => {
       )}
 
       {/* Payment Confirmation Checkbox */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      {/* <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <input
           type="checkbox"
           checked={paymentConfirmed}
@@ -216,7 +216,7 @@ const SevaList = () => {
         <label htmlFor="paymentConfirmed" style={{ margin: 0 }}>
           Confirm Payment
         </label>
-      </div>
+      </div> */}
 
       {/* Error Message */}
       {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}
