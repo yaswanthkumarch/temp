@@ -308,7 +308,7 @@ const hanumanSevas = [
 
 
       {/* ✨ Scrollable Sections */}
-<<<<<<< HEAD
+
       {/* <Section
         icon="📿"
         title={t('title')}
