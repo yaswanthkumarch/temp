@@ -530,7 +530,7 @@ const hanumanSevas = [
     </section>
  
 
-=======
+
       
                       <Section
   icon="📿"
@@ -585,8 +585,7 @@ const hanumanSevas = [
     </>
   }
 />
-                  
->>>>>>> bcef800bcc53e2abfa55ef1af2fdb08aad908e89
+
       <Section
         icon="📰"
         title={t('newsAndEvents')}
