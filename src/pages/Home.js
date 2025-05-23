@@ -237,6 +237,29 @@ const Home = () => {
     'img-2.jpg',
     'img-3.jpg'
   ];
+//   const hanumanSevas = [
+//   { name: 'Hanuman Archana', description: 'Offer prayers with sacred chants.' },
+//   { name: 'Abhishekam', description: 'Ritual bathing of the deity with holy items.' },
+//   { name: 'Alankaram', description: 'Decorating the idol with flowers and garments.' },
+//   { name: 'Tulasi Mala Seva', description: 'Offering Tulasi garlands to Hanuman.' },
+//   { name: 'Sankatahara Chaturthi Pooja', description: 'Special monthly prayer.' },
+// ];
+
+// const hanumanSevas = [
+//   { nameEn: 'Hanuman Archana', nameTe: 'హనుమాన్ అర్చన', descEn: 'Offer prayers with sacred chants.', descTe: 'పవిత్ర మంత్రాలతో ప్రార్థనలు చేయండి.' },
+//   { nameEn: 'Abhishekam', nameTe: 'అభిషేకం', descEn: 'Ritual bathing of the deity with holy items.', descTe: 'దేవుడికి పవిత్ర పదార్థాలతో అభిషేకం చేయడం.' },
+//   { nameEn: 'Alankaram', nameTe: 'అలంకారం', descEn: 'Decorating the idol with flowers and garments.', descTe: 'పుష్పాలు మరియు వస్త్రాలతో విగ్రహాన్ని అలంకరించడం.' },
+//   { nameEn: 'Tulasi Mala Seva', nameTe: 'తులసి మాల సేవ', descEn: 'Offering Tulasi garlands to Hanuman.', descTe: 'హనుమంతుడికి తులసి మాలలు సమర్పించడం.' },
+//   { nameEn: 'Sankatahara Chaturthi Pooja', nameTe: 'సంకటహర చతుర్థి పూజ', descEn: 'Special monthly prayer.', descTe: 'ప్రత్యేకమైన మాస పూజ.' },
+// ];
+
+const hanumanSevas = [
+  { nameKey: 'seva.archana.name', descKey: 'seva.archana.desc' },
+  { nameKey: 'seva.abhishekam.name', descKey: 'seva.abhishekam.desc' },
+  { nameKey: 'seva.alankaram.name', descKey: 'seva.alankaram.desc' },
+  { nameKey: 'seva.tulasi.name', descKey: 'seva.tulasi.desc' },
+  { nameKey: 'seva.sankatahara.name', descKey: 'seva.sankatahara.desc' },
+];
 
   return (
     <div style={styles.container}>
@@ -266,15 +289,229 @@ const Home = () => {
         </Slider>
       </section>
 
+
       {/* ✨ Scrollable Sections */}
-      <Section
+      {/* <Section
         icon="📿"
         title={t('title')}
         desc={t('desc')}
         button={t('button')}
         bg="#fff3cd"
         onClick={() => navigate('/seva-list')}
-      />
+      /> */}
+      {/* 🛕 Hanuman Seva List Preview */}
+{/* <section style={{ backgroundColor: '#fffbe6', padding: '3rem 2rem' }}>
+  <h2 style={{
+    textAlign: 'center',
+    fontSize: '2.2rem',
+    color: '#b23e18',
+    fontWeight: '700',
+    marginBottom: '2rem',
+  }}>
+    🙏 {t('Popular Sevas for Hanuman')}
+  </h2>
+
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '1.5rem',
+    maxWidth: '1000px',
+    margin: '0 auto',
+  }}>
+    {hanumanSevas.map((seva, index) => (
+      <div key={index} style={{
+        backgroundColor: '#fff',
+        border: '1px solid #f0c36d',
+        borderRadius: '10px',
+        padding: '1.5rem',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+        transition: 'transform 0.2s ease',
+      }}>
+       <h3 style={{ fontSize: '1.4rem', fontWeight: '700', color: '#c54b24', marginBottom: '0.5rem' }}>
+  {t(seva.nameKey)}
+</h3>
+<p style={{ fontSize: '1rem', color: '#444', marginBottom: '1.5rem' }}>
+  {t(seva.descKey)}
+</p>
+      </div>
+    ))}
+  </div>
+</section> */}
+{/* <section style={{ backgroundColor: '#fff8e1', padding: '4rem 2rem' }}>
+      <h2 style={{
+        textAlign: 'center',
+        fontSize: '2.4rem',
+        color: '#7b1f1f',
+        fontWeight: '700',
+        marginBottom: '2.5rem',
+        letterSpacing: '0.5px'
+      }}>
+        🙏 {t('Popular Sevas for Hanuman')}
+      </h2>
+
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+        gap: '2rem',
+        maxWidth: '1100px',
+        margin: '0 auto',
+      }}>
+        {hanumanSevas.map((seva, index) => (
+          <div key={index} style={{
+            backgroundColor: '#fff',
+            border: '1px solid #ffe0b2',
+            borderRadius: '12px',
+            padding: '1.8rem',
+            boxShadow: '0 6px 18px rgba(0,0,0,0.07)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            transition: 'transform 0.3s ease',
+          }}>
+            <div>
+              <h3 style={{
+                fontSize: '1.4rem',
+                fontWeight: '700',
+                color: '#c54b24',
+                marginBottom: '0.5rem',
+              }}>
+                {seva.nameEn} <br />
+                <span style={{ fontSize: '1.1rem', color: '#a35a1f' }}>{seva.nameTe}</span>
+              </h3>
+              <p style={{ fontSize: '1rem', color: '#444', marginBottom: '1.5rem' }}>
+                {seva.descEn}<br />
+                <span style={{ color: '#666' }}>{seva.descTe}</span>
+              </p>
+            </div>
+            <button
+              onClick={() => navigate('/seva-list')}
+              style={{
+                backgroundColor: '#c54b24',
+                color: '#fff',
+                padding: '0.6rem 1.5rem',
+                border: 'none',
+                borderRadius: '25px',
+                fontSize: '1rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                alignSelf: 'flex-start',
+                transition: 'background 0.3s ease',
+              }}
+              onMouseOver={(e) => e.target.style.backgroundColor = '#9b3a1a'}
+              onMouseOut={(e) => e.target.style.backgroundColor = '#c54b24'}
+            >
+              {t('Book Now')}
+            </button>
+          </div>
+        ))}
+      </div>
+    </section>
+  */}
+
+ <section style={{ backgroundColor: '#fff3cd', padding: '4rem 1rem' }}>
+      {/* Header + Description */}
+      <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+        <h2 style={{
+          fontSize: '2.3rem',
+          color: '#7b1f1f',
+          fontWeight: '700',
+          marginBottom: '1rem',
+        }}>
+          📿 {t('title')}
+        </h2>
+        <p style={{
+          fontSize: '1.1rem',
+          color: '#4d3d2b',
+          maxWidth: '700px',
+          margin: '0 auto',
+          lineHeight: '1.6',
+        }}>
+          {t('desc')}
+        </p>
+        {/* <button
+          onClick={() => navigate('/seva-list')}
+          style={{
+            marginTop: '1.5rem',
+            backgroundColor: '#c54b24',
+            color: '#fff',
+            padding: '0.7rem 1.5rem',
+            border: 'none',
+            borderRadius: '25px',
+            fontSize: '1rem',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'background 0.3s ease',
+          }}
+          onMouseOver={(e) => e.target.style.backgroundColor = '#9b3a1a'}
+          onMouseOut={(e) => e.target.style.backgroundColor = '#c54b24'}
+        >
+          {t('button')}
+        </button> */}
+      </div>
+
+      {/* Sevas List */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+        gap: '1.5rem',
+        maxWidth: '1100px',
+        margin: '0 auto',
+      }}>
+        {hanumanSevas.map((seva, index) => (
+          <div key={index} style={{
+            backgroundColor: '#fff',
+            border: '1px solid #ffe0b2',
+            borderRadius: '12px',
+            padding: '1.5rem',
+            boxShadow: '0 6px 18px rgba(0,0,0,0.07)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}>
+            <div>
+              <h3 style={{
+                fontSize: '1.2rem',
+                fontWeight: '700',
+                color: '#c54b24',
+                marginBottom: '0.5rem',
+                lineHeight: '1.4'
+              }}>
+                {t(seva.nameKey)}
+              </h3>
+              <p style={{
+                fontSize: '0.95rem',
+                color: '#444',
+                lineHeight: '1.6',
+                marginBottom: '1.2rem'
+              }}>
+                {t(seva.descKey)}
+              </p>
+            </div>
+            <button
+              onClick={() => navigate('/seva-list')}
+              style={{
+                backgroundColor: '#c54b24',
+                color: '#fff',
+                padding: '0.5rem 1.2rem',
+                border: 'none',
+                borderRadius: '20px',
+                fontSize: '0.95rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                alignSelf: 'flex-start',
+                transition: 'background 0.3s ease',
+              }}
+              onMouseOver={(e) => e.target.style.backgroundColor = '#9b3a1a'}
+              onMouseOut={(e) => e.target.style.backgroundColor = '#c54b24'}
+            >
+              {t('Book Now')}
+            </button>
+          </div>
+        ))}
+      </div>
+    </section>
+ 
+
       <Section
         icon="📰"
         title={t('newsAndEvents')}

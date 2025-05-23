@@ -83,29 +83,30 @@
 // export default PhotoGallery;
 
 // PhotoGallery.js
-
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+
 const images = [
-  { src: '/temple-1.png', title: 'Temple One' },
-  { src: '/temple-1.png', title: 'Temple Two' },
-  { src: '/temple-1.png', title: 'Temple Three' },
-  { src: '/img-1.jpg', title: 'Temple Four' },
-  { src: '/img-1.jpg', title: 'Temple Five' },
-  { src: '/img-1.jpg', title: 'Temple Six' },
-   { src: '/img-2.jpg', title: 'Temple One' },
-  { src: '/img-2.jpg', title: 'Temple Two' },
-  { src: '/img-2.jpg', title: 'Temple Three' },
-  { src: '/temple-3.jpg', title: 'Temple Four' },
-  { src: '/temple-3.jpg', title: 'Temple Five' },
-  { src: '/temple-3.jpg', title: 'Temple Six' },
+  { src: '/temple-1.png' },
+  { src: '/temple-1.png' },
+  { src: '/temple-1.jpg' },
+  { src: '/img-1.jpg' },
+  { src: '/temple-3.jpg' },
+  { src: '/img-1.jpg' },
+  { src: '/img-2.jpg' },
+  { src: '/img-2.jpg' },
+  { src: '/img-2.jpg' },
+  { src: '/img-1.jpg' },
+  { src: '/img-1.jpg' },
+  { src: '/temple-3.jpg' },
 ];
 
 const PhotoGallery = () => {
   const { t } = useTranslation();
+
   return (
     <div style={{
-      padding: '3rem',
+      padding: '2rem',
       maxWidth: '1200px',
       margin: '0 auto',
       backgroundColor: '#fdfdfd',
@@ -113,7 +114,7 @@ const PhotoGallery = () => {
     }}>
       <h1 style={{
         textAlign: 'center',
-        fontSize: '3rem',
+        fontSize: '2.5rem',
         color: '#7b1f1f',
         marginBottom: '2rem',
         fontWeight: 'bold',
@@ -124,48 +125,39 @@ const PhotoGallery = () => {
       </h1>
 
       <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '2rem',
+        columnCount: 3,
+        columnGap: '1.5rem',
       }}>
         {images.map((image, index) => (
           <div
             key={index}
             style={{
+              marginBottom: '1.5rem',
+              breakInside: 'avoid',
               borderRadius: '12px',
               overflow: 'hidden',
-              boxShadow: '0 6px 20px rgba(0,0,0,0.1)',
+              boxShadow: '0 6px 16px rgba(0,0,0,0.1)',
               transition: 'transform 0.3s ease, box-shadow 0.3s ease',
               cursor: 'pointer',
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.transform = 'scale(1.03)';
+              e.currentTarget.style.transform = 'scale(1.02)';
               e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
             }}
             onMouseOut={(e) => {
               e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.1)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.1)';
             }}
           >
             <img
               src={image.src}
-              alt={image.title}
+              alt=""
               style={{
                 width: '100%',
                 height: 'auto',
                 display: 'block',
               }}
             />
-            <div style={{
-              padding: '1rem',
-              background: '#fff',
-              textAlign: 'center',
-              fontWeight: '600',
-              fontSize: '1.1rem',
-              color: '#333',
-            }}>
-              {image.title}
-            </div>
           </div>
         ))}
       </div>

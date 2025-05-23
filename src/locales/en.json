@@ -1,5 +1,52 @@
 {
+  
   "home": "Home",
+  "sevaListTitle": "Seva List - 2025",
+  "yourName": "Your Name",
+  "selectSeva": "Select Seva",
+  "enterGotra": "Gotra",
+  "selectDate": "Select Seva Date",
+  "pujaMode": "Puja Mode",
+  "offline": "Offline",
+  "online": "Online",
+  "confirmPayment": "Confirm Payment",
+  "registerWhatsApp": "Register Seva via WhatsApp",
+  "paymentAmount": "Payment Amount for",
+  "choosePaymentMethod": "Choose a Payment Method:",
+  "scanToPay": "Scan to Pay via UPI",
+  "phonePe": "PhonePe",
+  "gpay": "Google Pay (GPay)",
+  "upi": "UPI",
+  "errorMessage": "Please fill all fields and confirm the payment before proceeding.",
+  "scheduledMessage": "Your {{seva}} is scheduled for {{date}}",
+  "conductedModeMessage": "The {{seva}} will be conducted {{mode}}.",
+  "Popular Sevas for Hanuman": "Popular Sevas for Hanuman",
+  "Book Now": "Book Now",
+
+  "seva": {
+    "archana": {
+      "name": "Hanuman Archana",
+      "desc": "Offer prayers with sacred chants."
+    },
+    "abhishekam": {
+      "name": "Abhishekam",
+      "desc": "Ritual bathing of the deity with holy items."
+    },
+    "alankaram": {
+      "name": "Alankaram",
+      "desc": "Decorating the idol with flowers and garments."
+    },
+    "tulasi": {
+      "name": "Tulasi Mala Seva",
+      "desc": "Offering Tulasi garlands to Hanuman."
+    },
+    "sankatahara": {
+      "name": "Sankatahara Chaturthi Pooja",
+      "desc": "Special monthly prayer."
+    }
+  }
+
+,
   "sevaList": "Seva List",
   "history": "History",
   "newsEvents": "News & Events",
