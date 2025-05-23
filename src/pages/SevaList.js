@@ -86,13 +86,8 @@ const SevaList = () => {
     setUpiQR(qrURL);
   };
 
-
   const handlePhonePayClick = () => {
-    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR`;
-
-const handlePhonePayClick = () => {
     const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR#Intent;scheme=upi;package=com.phonepe.app;end`;
-
     window.open(upiLink, '_blank');
   };
 
@@ -201,7 +196,6 @@ const handlePhonePayClick = () => {
         </div>
       )}
 
-
       {/* UPI QR Code */}
       {upiQR && (
         <div style={styles.qrCodeContainer}>
@@ -212,18 +206,17 @@ const handlePhonePayClick = () => {
 
       {/* Payment Confirmation Checkbox */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-  <input
-    type="checkbox"
-    checked={paymentConfirmed}
-    onChange={handlePaymentConfirmationChange}
-    id="paymentConfirmed"
-    style={{ margin: 0 }}
-  />
-  <label htmlFor="paymentConfirmed" style={{ margin: 0 }}>
-    Confirm Payment
-  </label>
-</div>
-
+        <input
+          type="checkbox"
+          checked={paymentConfirmed}
+          onChange={handlePaymentConfirmationChange}
+          id="paymentConfirmed"
+          style={{ margin: 0 }}
+        />
+        <label htmlFor="paymentConfirmed" style={{ margin: 0 }}>
+          Confirm Payment
+        </label>
+      </div>
 
       {/* Error Message */}
       {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}
@@ -322,8 +315,9 @@ const styles = {
     backgroundColor: '#2980b9',
     color: 'white',
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: '6px',
     cursor: 'pointer',
+    fontWeight: '600',
   },
   qrCodeContainer: {
     textAlign: 'center',
@@ -331,19 +325,19 @@ const styles = {
   },
   errorMessage: {
     color: 'red',
-    fontWeight: '600',
-    marginBottom: '15px',
+    marginTop: '10px',
   },
   button: {
     width: '100%',
-    padding: '12px',
+    padding: '15px',
     backgroundColor: '#27ae60',
-    color: 'white',
     border: 'none',
     borderRadius: '6px',
+    color: 'white',
     fontSize: '18px',
     cursor: 'pointer',
+    marginTop: '20px',
   },
-}};
+};
 
 export default SevaList;
