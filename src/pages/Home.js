@@ -214,7 +214,19 @@ import { useTranslation } from 'react-i18next';
 
 
 
+import { useState, useEffect } from 'react';
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return isMobile;
+};
 
 
 //import React from 'react';
@@ -239,10 +251,12 @@ const Home = () => {
   };
 
   const carouselImages = [
-    'temple-1.png'
-   
-  ];
-
+  {
+    desktop: 'temple-1.png',
+    mobile: 'temple-3.jpg',
+  }
+];
+const isMobile = useIsMobile();
   //  'temple-1.png',
   //   'temple-2.png',
     
@@ -272,6 +286,7 @@ const hanumanSevas = [
   { nameKey: 'seva.tulasi.name', descKey: 'seva.tulasi.desc' },
   { nameKey: 'seva.sankatahara.name', descKey: 'seva.sankatahara.desc' },
 ];
+            
 
   return (
     <div style={styles.container}>
@@ -283,7 +298,7 @@ const hanumanSevas = [
               <div
                 style={{
                   ...styles.carouselSlide,
-                  backgroundImage: `url(${img})`,
+             backgroundImage: `url(${isMobile ? img.mobile : img.desktop})`
                 }}
               >
                 <div style={styles.overlay}>
