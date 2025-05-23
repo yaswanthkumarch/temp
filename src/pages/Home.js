@@ -239,7 +239,7 @@ const Home = () => {
   };
 
   const carouselImages = [
-    'temple-3.jpg'
+    'temple-1.png'
    
   ];
 
@@ -584,14 +584,17 @@ const styles = {
   carouselWrapper: {
     position: 'relative',
     height: '80vh',
+   
     overflow: 'hidden',
   },
   carouselSlide: {
     height: '80vh',
+
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     display: 'flex',
+    
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
