@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './LanguageProvider'; // Import the LanguageProvider
-import NavBar from './components/NavBar';  // Ensure the NavBar component exists
+//import NavBar from './components/NavBar';  // Ensure the NavBar component exists
 import Footer from './components/Footer';  // Ensure Footer component exists
 import Home from './pages/Home';  // Ensure the Home page exists
 import SevaList from './pages/SevaList';  // Ensure SevaList page exists
@@ -12,6 +12,7 @@ import DonationForm from './pages/DonationForm';  // Ensure DonationForm page ex
 import CalendarComponent from './pages/CalendarComponent';  // Ensure CalendarComponent exists
 import Volunteer from './pages/Volunteer';
 import PhotoGallery from './pages/PhotoGallery'
+import AppNavbar from './components/AppNavbar;';
 import NewsEvents from './pages/NewsEvents'
 import './styles/App.css';  // Ensure this file exists and has styles
 
@@ -19,8 +20,9 @@ function App() {
   return (
     <LanguageProvider> {/* Wrap your app with LanguageProvider */}
       <Router>
-        <NavBar /> {/* Ensure NavBar component exists */}
-        <div className="App">
+        <AppNavbar/>
+    {/* <NavBar />    */}
+       <div className="App">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/admin" element={<AdminPortal />} />

@@ -239,13 +239,16 @@ const Home = () => {
   };
 
   const carouselImages = [
-    'temple-1.png',
-    'temple-2.png',
-    'temple-3.jpg',
-    'img-1.jpg',
-    'img-2.jpg',
-    'img-3.jpg'
+    'temple-3.jpg'
+   
   ];
+
+  //  'temple-1.png',
+  //   'temple-2.png',
+    
+  //   'img-1.jpg',
+  //   'img-2.jpg',
+  //   'img-3.jpg'
 //   const hanumanSevas = [
 //   { name: 'Hanuman Archana', description: 'Offer prayers with sacred chants.' },
 //   { name: 'Abhishekam', description: 'Ritual bathing of the deity with holy items.' },

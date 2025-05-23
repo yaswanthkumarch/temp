@@ -35,16 +35,18 @@ const Footer = () => {
       <div className={styles.bottom}>
         <p>© 2025 {t('footer.title')}. {t('footer.rights')}</p>
         <p>
-          {t('footer.developedBy')}{' '}
-          <a
-            href="https://wa.me/917989288815?text=Hi%20Yaswanth%20Kumar%20CH%2C%20I%20am%20looking%20for%20a%20website%20for%20my%20company."
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.devLink}
-          >
-            {t('footer.name')}
-          </a>
-        </p>
+  {t('footer.developedBy')}{' '}
+  <a
+    href="https://wa.me/917989288815?text=Hi%20Yaswanth%20Kumar%20CH%2C%20I%20am%20looking%20for%20a%20website%20for%20my%20company."
+    target="_blank"
+    rel="noopener noreferrer"
+    className={styles.devLink}
+  >
+    {t('footer.name')}
+  </a>{' '}
+  | Phone: <a href="tel:+917989288815" className={styles.devLink}>+91 7989288815</a>
+</p>
+
 
         <div className={styles.social}>
           <a href="https://wa.me/yourwhatsapplink" target="_blank" rel="noreferrer"><FaWhatsapp /></a>
