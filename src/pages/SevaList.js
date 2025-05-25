@@ -86,15 +86,28 @@ const SevaList = () => {
     setUpiQR(qrURL);
   };
 
-  const handlePhonePayClick = () => {
-    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR#Intent;scheme=upi;package=com.phonepe.app;end`;
-    window.open(upiLink, '_blank');
-  };
-
+ // const handlePhonePayClick = () => {
+  //  const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR#Intent;scheme=upi;package=com.phonepe.app;end`;
+  //  window.open(upiLink, '_blank');
+ // };
+const handlePhonePayClick = () => {
+  const upiId = "7989288815@axl"; // Your PhonePe UPI ID
+  const name = "Chennareddy Yaswanth Kumar";
+  const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
+  
+  window.open(upiLink, '_blank');
+};
+ // const handleGPayClick = () => {
+ //   const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
+ //   window.open(upiLink, '_blank');
+ // };
   const handleGPayClick = () => {
-    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
-    window.open(upiLink, '_blank');
-  };
+  const upiId = "yaswanthkumarch2001-1@okicici"; // Your GPay UPI ID
+  const name = "Chennareddy Yaswanth Kumar"; // Your name (URL encoded below)
+  const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR&mode=02&purpose=00#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
+  
+  window.open(upiLink, '_blank');
+};
 
   useEffect(() => {
     if (!isFormValid) {
