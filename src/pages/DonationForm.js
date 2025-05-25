@@ -265,10 +265,26 @@ ${t('email')}: ${form.email}`;
               {/* Pay via UPI */}
               <a href={upiLink} style={styles.paymentLink}>Pay via UPI</a>
               {/* Pay via PhonePe */}
-              <a href={`upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${form.amount}&cu=INR`} style={styles.paymentLink}>Pay via PhonePe</a>
+         //     <a href={`upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${form.amount}&cu=INR`} style={styles.paymentLink}>Pay via PhonePe</a>
               {/* Pay via Google Pay */}
-              <a href={`upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${form.amount}&cu=INR`} style={styles.paymentLink}>Pay via Google Pay</a>
-            </div>
+          //    <a href={`upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${form.amount}&cu=INR`} style={styles.paymentLink}>Pay via Google Pay</a>
+         {/* Pay via PhonePe */}
+<a 
+  href={`upi://pay?pa=7989288815@axl&pn=Chennareddy%20Yaswanth%20Kumar&am=${form.amount}&cu=INR`} 
+  style={styles.paymentLink}
+>
+  Pay via PhonePe
+</a>
+
+{/* Pay via Google Pay */}
+<a 
+  href={`upi://pay?pa=yaswanthkumarch2001-1@okicici&pn=Chennareddy%20Yaswanth%20Kumar&am=${form.amount}&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`} 
+  style={styles.paymentLink}
+>
+  Pay via Google Pay
+</a> 
+         
+         </div>
             <p style={styles.instructions}>{t('afterPaymentNote')}</p>
 
             <p style={styles.confirmationText}>{confirmationMessage}</p>
