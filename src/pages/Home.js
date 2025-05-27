@@ -252,7 +252,7 @@ const Home = () => {
 
   const carouselImages = [
   {
-    desktop: 'temple-1.png',
+    desktop: 'dashboar_logo.png',
     mobile: 'temple-3.jpg',
   }
 ];

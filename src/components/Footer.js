@@ -48,11 +48,11 @@ const Footer = () => {
 </p>
 
 
-        <div className={styles.social}>
+        {/* <div className={styles.social}>
           <a href="https://wa.me/yourwhatsapplink" target="_blank" rel="noreferrer"><FaWhatsapp /></a>
           <a href="https://yourwebsite.com" target="_blank" rel="noreferrer"><FaGlobeAsia /></a>
           <a href="mailto:your@email.com"><FaEnvelope /></a>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
