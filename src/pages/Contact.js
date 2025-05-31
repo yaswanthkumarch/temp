@@ -93,7 +93,7 @@ const Contact = () => {
             {t('email')} {/* Use translation key */}
           </h3>
           <p style={{ color: '#555' }}>
-            <a href="mailto:temple@example.com" style={{
+            <a href="mailto:divyomtech@gmail.com" style={{
               color: '#8e1e1a',
               textDecoration: 'none'
             }}>{t('emailAddress')}</a> {/* Use translation key */}
