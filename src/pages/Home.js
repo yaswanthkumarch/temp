@@ -252,8 +252,9 @@ const Home = () => {
 
   const carouselImages = [
   {
-    desktop: 'dashboar_logo.png',
-    mobile: 'temple-3.jpg',
+    //desktop: 'dashboar_logo.png',
+   desktop: 'temple-3.jpg',
+ mobile: 'temple-3.jpg',
   }
 ];
 const isMobile = useIsMobile();
