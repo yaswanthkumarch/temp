@@ -158,6 +158,7 @@
 // };
 
 // export default DonationForm;
+
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -171,16 +172,17 @@ const DonationForm = () => {
     purpose: '',
     email: '',
   });
-  const fields = [ // <<< Defined here
-    { label: t('name'), name: 'name', placeholder: 'Ram Prasad' },
-    { label: t('gotra'), name: 'gotra', placeholder: 'Bharadwaja' },
-    { label: t('purpose'), name: 'purpose', placeholder: t('annadanam') },
-    { label: t('amount'), name: 'amount', type: 'number', placeholder: '500' },
-    { label: t('email'), name: 'email', type: 'email', placeholder: 'ram@example.com' },
-  ];
+
+  const fields = [
+    { label: t('name'), name: 'name', placeholder: 'Ram Prasad' },
+    { label: t('gotra'), name: 'gotra', placeholder: 'Bharadwaja' },
+    { label: t('purpose'), name: 'purpose', placeholder: t('annadanam') },
+    { label: t('amount'), name: 'amount', type: 'number', placeholder: '500' },
+    { label: t('email'), name: 'email', type: 'email', placeholder: 'ram@example.com' },
+  ];
 
   const [qrUrl, setQrUrl] = useState('');
-  const [upiLink, setUpiLink] = useState('');
+  // REMOVED: const [upiLink, setUpiLink] = useState(''); // This state is no longer needed
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [confirmationMessage, setConfirmationMessage] = useState('');
@@ -191,24 +193,23 @@ const DonationForm = () => {
     setForm({ ...form, [name]: value });
   };
 
-  // Generate UPI link and QR code when amount is provided
+  // Generate QR code when amount is provided
   useEffect(() => {
     if (form.amount && parseFloat(form.amount) > 0) { // Ensure amount is valid and positive
+      // Generate UPI link locally for QR code, not as state
       const upi = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${form.amount}&cu=INR`;
       const qr = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upi)}`;
       setQrUrl(qr);
-      setUpiLink(upi);
+      // REMOVED: setUpiLink(upi); // No longer setting upiLink state here
     } else {
       setQrUrl('');
-      setUpiLink('');
+      // REMOVED: setUpiLink(''); // No longer clearing upiLink state here
     }
   }, [form.amount]);
 
-  // Handle form submission (for WhatsApp message)
+  // Handle form submission (for WhatsApp message - no direct form submit action)
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission
-    // This function is now triggered by handleWhatsAppRegister, not directly by form submit
-    // The form submit button is now the "Confirm Registration" button
   };
 
   // Handle payment confirmation checkbox change
@@ -222,7 +223,7 @@ const DonationForm = () => {
   // Handle WhatsApp registration (after payment)
   const handleWhatsAppRegister = () => {
     if (!form.name || !form.amount || !form.email || !form.gotra || !form.purpose) {
-      setErrorMessage(t('fillAllFieldsError')); // New translation key needed for this
+      setErrorMessage(t('fillAllFieldsError')); // You'll need to define 'fillAllFieldsError' in your translation file
       return;
     }
 
@@ -233,11 +234,11 @@ const DonationForm = () => {
                       `${t('purpose')}: ${form.purpose}\n` +
                       `${t('amount')}: ₹${form.amount}\n` +
                       `${t('email')}: ${form.email}\n\n` +
-                      `${t('paymentConfirmedMessage')}`; // New translation key for this message
+                      `${t('paymentConfirmedMessage')}`; // You'll need to define 'paymentConfirmedMessage' in your translation file
 
       const whatsappUrl = `https://wa.me/918074498661?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
-      setConfirmationMessage(t('registrationSuccess')); // New translation key for this
+      setConfirmationMessage(t('registrationSuccess')); // You'll need to define 'registrationSuccess' in your translation file
       setErrorMessage(''); // Clear any previous errors
     } else {
       setErrorMessage(t('paymentNotConfirmedError'));
@@ -249,23 +250,23 @@ const DonationForm = () => {
   const handlePhonePeClick = () => {
     const upiId = "7989288815@axl"; // Your PhonePe UPI ID
     const name = "Chennareddy Yaswanth Kumar";
-    const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${form.amount}&cu=INR`;
-    window.open(upiLink, '_blank');
+    const phonePeUpiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${form.amount}&cu=INR`;
+    window.open(phonePeUpiLink, '_blank');
   };
 
   const handleGPayClick = () => {
     const upiId = "yaswanthkumarch2001-1@okicici"; // Your GPay UPI ID
     const name = "Chennareddy Yaswanth Kumar";
-    const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${form.amount}&cu=INR&mode=02&purpose=00#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
-    window.open(upiLink, '_blank');
+    const gPayUpiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${form.amount}&cu=INR&mode=02&purpose=00#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
+    window.open(gPayUpiLink, '_blank');
   };
 
   const handleUPIClick = () => {
-    const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${form.amount}&cu=INR`;
-    const qr = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}`;
+    // Generate UPI link locally for the QR code display
+    const genericUpiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${form.amount}&cu=INR`;
+    const qr = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(genericUpiLink)}`;
     setQrUrl(qr); // Show QR code when UPI button is clicked
   };
-
 
   // Form validity check
   const isFormValid = form.name && form.amount && parseFloat(form.amount) > 0 && form.email && form.gotra && form.purpose;
@@ -274,7 +275,7 @@ const DonationForm = () => {
     <div style={styles.container}>
       <h2 style={styles.header}>🕉️ {t('donationTitle')}</h2>
       <p style={styles.subtext}>{t('donationSubtext')}</p>
-      <form onSubmit={handleSubmit}> {/* Form onSubmit is now just to prevent default */}
+      <form onSubmit={handleSubmit}>
         {fields.map((field, idx) => (
           <div key={idx} style={styles.formGroup}>
             <label htmlFor={field.name} style={styles.label}>{field.label}</label>
@@ -336,9 +337,8 @@ const DonationForm = () => {
             {errorMessage && <p style={styles.errorText}>{errorMessage}</p>}
             {confirmationMessage && <p style={styles.confirmationText}>{confirmationMessage}</p>}
 
-
             <button
-              type="button" // Important: Set to type="button" to prevent default form submission
+              type="button"
               onClick={handleWhatsAppRegister}
               style={{ ...styles.registerButton, opacity: isFormValid && paymentConfirmed ? 1 : 0.6 }}
               disabled={!isFormValid || !paymentConfirmed}
@@ -354,26 +354,26 @@ const DonationForm = () => {
 
 const styles = {
   container: {
-    maxWidth: '650px', // Adjusted max width
-    margin: '30px auto', // More top/bottom margin for breathing room
-    padding: '35px', // Increased padding
-    background: 'linear-gradient(135deg, #FFFDE7 0%, #FFECD2 100%)', // Soft, warm gradient
-    borderRadius: '18px', // More rounded corners
-    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.1)', // Deeper, more refined shadow
-    fontFamily: "'Playfair Display', serif", // Elegant font (import via Google Fonts if needed)
-    color: '#4A4A4A', // Darker text for readability
-    border: '1px solid #FFCC80', // Subtle border with a warm temple color
-    position: 'relative', // For potential absolute positioning of elements
-    overflow: 'hidden', // Ensures shadows/borders are contained
+    maxWidth: '650px',
+    margin: '30px auto',
+    padding: '35px',
+    background: 'linear-gradient(135deg, #FFFDE7 0%, #FFECD2 100%)',
+    borderRadius: '18px',
+    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.1)',
+    fontFamily: "'Playfair Display', serif",
+    color: '#4A4A4A',
+    border: '1px solid #FFCC80',
+    position: 'relative',
+    overflow: 'hidden',
   },
   header: {
     textAlign: 'center',
-    color: '#8B4513', // Deep brown for heading
+    color: '#8B4513',
     marginBottom: '15px',
-    fontSize: '2.8rem', // Larger heading
+    fontSize: '2.8rem',
     fontWeight: '700',
-    textShadow: '2px 2px 4px rgba(0,0,0,0.15)', // More pronounced text shadow
-    fontFamily: "'Merienda', cursive", // Decorative font for the title
+    textShadow: '2px 2px 4px rgba(0,0,0,0.15)',
+    fontFamily: "'Merienda', cursive",
     position: 'relative',
     zIndex: 1,
   },
@@ -381,29 +381,29 @@ const styles = {
     textAlign: 'center',
     color: '#6d4c41',
     fontSize: '1.1rem',
-    marginBottom: '2.5rem', // More space below subtext
+    marginBottom: '2.5rem',
     lineHeight: '1.5',
   },
   formGroup: {
-    marginBottom: '22px', // More space between form elements
+    marginBottom: '22px',
   },
   label: {
     display: 'block',
     marginBottom: '8px',
     fontWeight: 'bold',
-    color: '#6A1B9A', // Rich purple for labels
-    fontSize: '1.15rem', // Slightly larger font for labels
+    color: '#6A1B9A',
+    fontSize: '1.15rem',
   },
   input: {
     width: '100%',
-    padding: '14px 18px', // More padding for input fields
-    borderRadius: '10px', // More rounded
-    border: '1px solid #D7CCC8', // Soft grey border
+    padding: '14px 18px',
+    borderRadius: '10px',
+    border: '1px solid #D7CCC8',
     fontSize: '1rem',
     background: '#FFFFFF',
-    boxShadow: 'inset 0 1px 4px rgba(0,0,0,0.08)', // Subtle inner shadow
+    boxShadow: 'inset 0 1px 4px rgba(0,0,0,0.08)',
     transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
-    '&:focus': { // This won't work directly in inline styles, needs CSS module/styled-components
+    '&:focus': {
       borderColor: '#FF8C42',
       boxShadow: '0 0 0 3px rgba(255, 140, 66, 0.2)',
       outline: 'none',
@@ -411,7 +411,7 @@ const styles = {
   },
   paymentSection: {
     marginTop: '30px',
-    backgroundColor: '#F3E5F5', // Light purple background for payment
+    backgroundColor: '#F3E5F5',
     padding: '25px',
     borderRadius: '15px',
     boxShadow: '0 8px 20px rgba(0, 0, 0, 0.15)',
@@ -438,10 +438,10 @@ const styles = {
     marginBottom: '25px',
   },
   paymentButton: {
-    flex: '1 1 150px', // Flexible but with a base width
-    maxWidth: '180px', // Max width for larger screens
+    flex: '1 1 150px',
+    maxWidth: '180px',
     padding: '12px 10px',
-    background: 'linear-gradient(45deg, #FFD700 0%, #FFCC00 100%)', // Gold gradient
+    background: 'linear-gradient(45deg, #FFD700 0%, #FFCC00 100%)',
     color: '#8B4513',
     border: 'none',
     borderRadius: '10px',
@@ -454,20 +454,20 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     gap: '8px',
-    '&:hover': { // This won't work directly in inline styles
+    '&:hover': {
       transform: 'translateY(-3px)',
       boxShadow: '0 6px 12px rgba(0, 0, 0, 0.25)',
     }
   },
   paymentIcon: {
-    width: '28px', // Slightly larger icons
+    width: '28px',
     height: '28px',
     marginRight: '5px',
   },
-  paymentLink: { // New style for UPI/PhonePe/GPay links
-    display: 'inline-block', // Make them behave like buttons
+  paymentLink: {
+    display: 'inline-block',
     padding: '10px 15px',
-    backgroundColor: '#00796b', // Teal for UPI
+    backgroundColor: '#00796b',
     color: '#fff',
     textDecoration: 'none',
     borderRadius: '8px',
@@ -497,7 +497,7 @@ const styles = {
   qrImage: {
     maxWidth: '100%',
     height: 'auto',
-    border: '5px solid #FF8C42', // Saffron border around QR
+    border: '5px solid #FF8C42',
     borderRadius: '10px',
   },
   instructions: {
@@ -505,7 +505,7 @@ const styles = {
     fontSize: '1rem',
     color: '#555',
     lineHeight: '1.5',
-    backgroundColor: '#FFF8E1', // Light yellow background for instructions
+    backgroundColor: '#FFF8E1',
     padding: '15px',
     borderRadius: '10px',
     border: '1px solid #FFECB3',
@@ -514,13 +514,13 @@ const styles = {
     marginTop: '25px',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center', // Center checkbox
+    justifyContent: 'center',
   },
   checkbox: {
     marginRight: '10px',
-    transform: 'scale(1.4)', // Larger checkbox
+    transform: 'scale(1.4)',
     cursor: 'pointer',
-    accentColor: '#FF8C42', // Accent color for checkbox
+    accentColor: '#FF8C42',
   },
   checkboxLabel: {
     fontSize: '1.1rem',
@@ -528,8 +528,8 @@ const styles = {
     fontWeight: '600',
   },
   errorText: {
-    color: '#D32F2F', // Dark red for errors
-    backgroundColor: '#FFEBEE', // Light red background for error message
+    color: '#D32F2F',
+    backgroundColor: '#FFEBEE',
     padding: '12px',
     borderRadius: '8px',
     marginTop: '20px',
@@ -539,8 +539,8 @@ const styles = {
     fontSize: '1rem',
   },
   confirmationText: {
-    color: '#2E7D32', // Dark green for success
-    backgroundColor: '#E8F5E9', // Light green background for confirmation
+    color: '#2E7D32',
+    backgroundColor: '#E8F5E9',
     padding: '12px',
     borderRadius: '8px',
     marginTop: '20px',
@@ -552,24 +552,24 @@ const styles = {
   registerButton: {
     width: '100%',
     padding: '18px 20px',
-    background: 'linear-gradient(45deg, #FF8C42 0%, #FA8806 100%)', // Vibrant orange gradient
+    background: 'linear-gradient(45deg, #FF8C42 0%, #FA8806 100%)',
     border: 'none',
-    borderRadius: '12px', // More rounded
+    borderRadius: '12px',
     color: 'white',
-    fontSize: '1.6rem', // Larger font
+    fontSize: '1.6rem',
     fontWeight: 'bold',
     cursor: 'pointer',
     marginTop: '30px',
     boxShadow: '0 8px 16px rgba(0, 0, 0, 0.25)',
     transition: 'transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease',
-    letterSpacing: '1.5px', // More spaced letters
-    '&:disabled': { // This won't work directly in inline styles
+    letterSpacing: '1.5px',
+    '&:disabled': {
       opacity: 0.6,
       cursor: 'not-allowed',
       boxShadow: 'none',
       transform: 'translateY(0)',
     },
-    '&:hover:not(:disabled)': { // This won't work directly in inline styles
+    '&:hover:not(:disabled)': {
       transform: 'translateY(-5px)',
       boxShadow: '0 10px 20px rgba(0, 0, 0, 0.35)',
     }
