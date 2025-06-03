@@ -86,28 +86,21 @@ const SevaList = () => {
     setUpiQR(qrURL);
   };
 
- // const handlePhonePayClick = () => {
-  //  const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR#Intent;scheme=upi;package=com.phonepe.app;end`;
-  //  window.open(upiLink, '_blank');
- // };
-const handlePhonePayClick = () => {
-  const upiId = "7989288815@axl"; // Your PhonePe UPI ID
-  const name = "Chennareddy Yaswanth Kumar";
-  const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
-  
-  window.open(upiLink, '_blank');
-};
- // const handleGPayClick = () => {
- //   const upiLink = `upi://pay?pa=7989288815@postbank&pn=Chennareddy%20Yaswanth%20Kumar&am=${amount}&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
- //   window.open(upiLink, '_blank');
- // };
+  const handlePhonePayClick = () => {
+    const upiId = "7989288815@axl"; // Your PhonePe UPI ID
+    const name = "Chennareddy Yaswanth Kumar";
+    const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
+
+    window.open(upiLink, '_blank');
+  };
+
   const handleGPayClick = () => {
-  const upiId = "yaswanthkumarch2001-1@okicici"; // Your GPay UPI ID
-  const name = "Chennareddy Yaswanth Kumar"; // Your name (URL encoded below)
-  const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR&mode=02&purpose=00#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
-  
-  window.open(upiLink, '_blank');
-};
+    const upiId = "yaswanthkumarch2001-1@okicici"; // Your GPay UPI ID
+    const name = "Chennareddy Yaswanth Kumar"; // Your name (URL encoded below)
+    const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR&mode=02&purpose=00#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
+
+    window.open(upiLink, '_blank');
+  };
 
   useEffect(() => {
     if (!isFormValid) {
@@ -122,22 +115,23 @@ const handlePhonePayClick = () => {
       <h1 style={styles.header}>{t('sevaListTitle')}</h1>
 
       {/* User Name */}
-      <div style={styles.formContainer}>
-        <label style={styles.label}>{t('yourName')}</label>
+      <div style={styles.formGroup}>
+        <label htmlFor="userName" style={styles.label}>{t('yourName')}</label>
         <input
           type="text"
+          id="userName"
           value={userName}
           onChange={handleNameChange}
           style={styles.input}
-          placeholder={t('yourName')}
+          placeholder={t('')}
         />
       </div>
 
       {/* Select Seva */}
-      <div style={styles.formContainer}>
-        <label style={styles.label}>{t('selectSeva')}</label>
-        <select value={selectedSeva} onChange={handleSevaChange} style={styles.select}>
-          <option value="">{`--${t('selectSeva')}--`}</option>
+      <div style={styles.formGroup}>
+        <label htmlFor="selectedSeva" style={styles.label}>{t('selectSeva')}</label>
+        <select id="selectedSeva" value={selectedSeva} onChange={handleSevaChange} style={styles.select}>
+          <option value="">{`${t('')}--`}</option>
           {sevas.map((seva, idx) => (
             <option key={idx} value={seva.name}>{seva.name}</option>
           ))}
@@ -145,22 +139,24 @@ const handlePhonePayClick = () => {
       </div>
 
       {/* Gotra */}
-      <div style={styles.formContainer}>
-        <label style={styles.label}>{t('enterGotra')}</label>
+      <div style={styles.formGroup}>
+        <label htmlFor="gotra" style={styles.label}>{t('enterGotra')}</label>
         <input
           type="text"
+          id="gotra"
           value={gotra}
           onChange={handleGotraChange}
           style={styles.input}
-          placeholder={t('enterGotra')}
+          placeholder={t('')}
         />
       </div>
 
       {/* Date */}
-      <div style={styles.formContainer}>
-        <label style={styles.label}>{t('selectDate')}</label>
+      <div style={styles.formGroup}>
+        <label htmlFor="selectedDate" style={styles.label}>{t('selectDate')}</label>
         <input
           type="date"
+          id="selectedDate"
           value={selectedDate}
           onChange={handleDateChange}
           style={styles.input}
@@ -168,15 +164,15 @@ const handlePhonePayClick = () => {
       </div>
 
       {/* Puja Mode */}
-      <div style={styles.formContainer}>
-        <label style={styles.label}>{t('pujaMode')}</label>
-        <select value={pujaMode} onChange={handlePujaModeChange} style={styles.select}>
+      <div style={styles.formGroup}>
+        <label htmlFor="pujaMode" style={styles.label}>{t('pujaMode')}</label>
+        <select id="pujaMode" value={pujaMode} onChange={handlePujaModeChange} style={styles.select}>
           <option value="offline">{t('offline')}</option>
           <option value="online">{t('online')}</option>
         </select>
       </div>
 
-      {/* Confirmation message and Payment Confirm checkbox in one line */}
+      {/* Confirmation message and Payment Confirm checkbox */}
       {confirmationMessage && (
         <div style={styles.confirmationAndCheckboxContainer}>
           <p style={styles.confirmationMessage}>{confirmationMessage}</p>
@@ -202,9 +198,18 @@ const handlePhonePayClick = () => {
           </p>
           <p style={styles.paymentText}>{t('choosePaymentMethod')}</p>
           <div style={styles.paymentOptions}>
-            <button style={styles.paymentButton} onClick={handlePhonePayClick}>{t('phonePe')}</button>
-            <button style={styles.paymentButton} onClick={handleGPayClick}>{t('gpay')}</button>
-            <button style={styles.paymentButton} onClick={handleUPIClick}>{t('upi')}</button>
+            <button style={styles.paymentButton} onClick={handlePhonePayClick}>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/PhonePe_Logo.svg/2560px-PhonePe_Logo.svg.png" alt="PhonePe" style={styles.paymentIcon} />
+              {t('phonePe')}
+            </button>
+            <button style={styles.paymentButton} onClick={handleGPayClick}>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Google_Pay_Logo.svg/1200px-Google_Pay_Logo.svg.png" alt="GPay" style={styles.paymentIcon} />
+              {t('gpay')}
+            </button>
+            <button style={styles.paymentButton} onClick={handleUPIClick}>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-Vector.svg" alt="UPI" style={styles.paymentIcon} />
+              {t('upi')}
+            </button>
           </div>
         </div>
       )}
@@ -212,24 +217,10 @@ const handlePhonePayClick = () => {
       {/* UPI QR Code */}
       {upiQR && (
         <div style={styles.qrCodeContainer}>
-          <h2>{t('scanToPay')}</h2>
-          <img alt="UPI QR Code" width="250" height="250" src={upiQR} />
+          <h2 style={styles.qrCodeHeader}>{t('scanToPay')}</h2>
+          <img alt="UPI QR Code" width="250" height="250" src={upiQR} style={styles.qrCodeImage} />
         </div>
       )}
-
-      {/* Payment Confirmation Checkbox */}
-      {/* <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <input
-          type="checkbox"
-          checked={paymentConfirmed}
-          onChange={handlePaymentConfirmationChange}
-          id="paymentConfirmed"
-          style={{ margin: 0 }}
-        />
-        <label htmlFor="paymentConfirmed" style={{ margin: 0 }}>
-          Confirm Payment
-        </label>
-      </div> */}
 
       {/* Error Message */}
       {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}
@@ -248,108 +239,178 @@ const handlePhonePayClick = () => {
 
 const styles = {
   container: {
-    maxWidth: '600px',
-    margin: 'auto',
-    padding: '20px',
-    backgroundColor: '#f9f9f9',
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    maxWidth: '700px', // Slightly wider container
+    margin: '30px auto', // More top/bottom margin for breathing room
+    padding: '30px',
+    background: 'linear-gradient(135deg, #FFFDE7 0%, #FFECD2 100%)', // Soft, warm gradient
+    borderRadius: '15px', // More rounded corners
+    boxShadow: '0 12px 24px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1)', // Deeper, more refined shadow
+    fontFamily: "'Playfair Display', serif", // A more elegant font (import via Google Fonts if needed)
+    color: '#4A4A4A', // Darker text for readability
+    border: '1px solid #FFCC80', // Subtle border with a warm temple color
   },
   header: {
     textAlign: 'center',
-    color: '#2c3e50',
-    marginBottom: '20px',
+    color: '#8B4513', // Deep brown for heading, reminiscent of wood/earth
+    marginBottom: '25px',
+    fontSize: '2.5rem', // Larger heading
+    fontWeight: '700',
+    textShadow: '1px 1px 2px rgba(0,0,0,0.1)', // Subtle text shadow
+    fontFamily: "'Merienda', cursive", // A decorative font for the title
   },
-  formContainer: {
-    marginBottom: '15px',
+  formGroup: {
+    marginBottom: '20px', // More space between form elements
   },
   label: {
     display: 'block',
-    marginBottom: '5px',
-    fontWeight: '600',
-    color: '#34495e',
+    marginBottom: '8px', // More space for label
+    fontWeight: 'bold', // Bold labels
+    color: '#6A1B9A', // A rich purple for labels
+    fontSize: '1.1rem',
   },
   input: {
     width: '100%',
-    padding: '10px',
-    borderRadius: '4px',
-    border: '1px solid #ccc',
-    fontSize: '16px',
+    padding: '12px 15px', // More padding for input fields
+    borderRadius: '8px', // Slightly more rounded
+    border: '1px solid #D7CCC8', // Soft grey border
+    fontSize: '1rem',
+    background: '#FFFFFF',
+    boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.05)', // Subtle inner shadow
   },
   select: {
     width: '100%',
-    padding: '10px',
-    borderRadius: '4px',
-    border: '1px solid #ccc',
-    fontSize: '16px',
+    padding: '12px 15px',
+    borderRadius: '8px',
+    border: '1px solid #D7CCC8',
+    fontSize: '1rem',
+    background: '#FFFFFF',
+    boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.05)',
+    cursor: 'pointer',
   },
   confirmationAndCheckboxContainer: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: '15px',
+    flexDirection: 'column', // Stacked on small screens
+    alignItems: 'flex-start', // Align items to the start
     gap: '15px',
+    marginBottom: '20px',
+    padding: '15px',
+    backgroundColor: '#E8F5E9', // Light green for success
+    borderRadius: '10px',
+    border: '1px solid #A5D6A7',
   },
   checkboxContainer: {
     display: 'flex',
     alignItems: 'center',
   },
   confirmationMessage: {
-    backgroundColor: '#dff0d8',
-    color: '#3c763d',
-    padding: '10px',
-    borderRadius: '4px',
+    color: '#2E7D32', // Darker green text
     margin: 0,
-    flex: 1,
-    fontSize: '16px',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    lineHeight: '1.4',
   },
   checkbox: {
-    marginRight: '8px',
-    transform: 'scale(1.2)',
+    marginRight: '10px', // More space for checkbox
+    transform: 'scale(1.3)', // Slightly larger checkbox
+    cursor: 'pointer',
+    accentColor: '#FF8C42', // Accent color for checkbox
   },
   paymentDetails: {
-    marginTop: '20px',
-    backgroundColor: '#ecf0f1',
-    padding: '15px',
-    borderRadius: '6px',
+    marginTop: '30px',
+    backgroundColor: '#F3E5F5', // Light purple background for payment
+    padding: '20px',
+    borderRadius: '10px',
+    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+    border: '1px solid #CE93D8',
   },
   paymentText: {
-    margin: '5px 0',
+    margin: '8px 0',
+    fontSize: '1.1rem',
+    color: '#6A1B9A', // Purple text for payment details
+    fontWeight: '600',
   },
   paymentOptions: {
     display: 'flex',
-    gap: '10px',
-    marginTop: '10px',
+    flexWrap: 'wrap', // Allow wrapping on smaller screens
+    gap: '15px', // More space between buttons
+    marginTop: '15px',
+    justifyContent: 'center', // Center payment buttons
   },
   paymentButton: {
     flex: 1,
-    padding: '10px',
-    backgroundColor: '#2980b9',
-    color: 'white',
+    minWidth: '120px', // Ensure buttons don't get too small
+    padding: '12px 10px',
+    background: 'linear-gradient(45deg, #FFD700 0%, #FFCC00 100%)', // Gold gradient
+    color: '#8B4513', // Deep brown text for gold buttons
     border: 'none',
-    borderRadius: '6px',
+    borderRadius: '8px',
     cursor: 'pointer',
-    fontWeight: '600',
+    fontWeight: '700',
+    fontSize: '1rem',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.15)',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '8px',
+  },
+  paymentButtonHover: {
+    transform: 'translateY(-3px)',
+    boxShadow: '0 6px 12px rgba(0, 0, 0, 0.25)',
+  },
+  paymentIcon: {
+    width: '24px',
+    height: '24px',
+    marginRight: '5px',
   },
   qrCodeContainer: {
     textAlign: 'center',
-    marginTop: '20px',
+    marginTop: '30px',
+    padding: '20px',
+    backgroundColor: '#FFFFFF',
+    borderRadius: '10px',
+    boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
+    border: '1px dashed #FF8C42', // Dashed border for attention
+  },
+  qrCodeHeader: {
+    color: '#8B4513',
+    fontSize: '1.8rem',
+    marginBottom: '15px',
+  },
+  qrCodeImage: {
+    maxWidth: '100%', // Ensure QR code scales on smaller screens
+    height: 'auto',
+    border: '4px solid #FF8C42', // Saffron border around QR
+    borderRadius: '8px',
   },
   errorMessage: {
-    color: 'red',
-    marginTop: '10px',
+    color: '#D32F2F', // Dark red for errors
+    backgroundColor: '#FFEBEE', // Light red background for error message
+    padding: '10px',
+    borderRadius: '6px',
+    marginTop: '20px',
+    textAlign: 'center',
+    fontWeight: '600',
+    border: '1px solid #EF9A9A',
   },
   button: {
     width: '100%',
-    padding: '15px',
-    backgroundColor: '#27ae60',
+    padding: '18px 20px', // Larger, more prominent button
+    background: 'linear-gradient(45deg, #FF8C42 0%, #FA8806 100%)', // Vibrant orange gradient
     border: 'none',
-    borderRadius: '6px',
+    borderRadius: '10px',
     color: 'white',
-    fontSize: '18px',
+    fontSize: '1.5rem', // Larger font
+    fontWeight: 'bold', // Bold text
     cursor: 'pointer',
-    marginTop: '20px',
+    marginTop: '30px',
+    boxShadow: '0 6px 12px rgba(0, 0, 0, 0.2)',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+    letterSpacing: '1px', // Slightly spaced letters for emphasis
+  },
+  buttonHover: {
+    transform: 'translateY(-4px)',
+    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
   },
 };
 

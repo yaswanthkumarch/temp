@@ -80,11 +80,12 @@
 
 
 
-
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './NavBar.module.scss';
+// Assuming you have a logo image in your src/assets folder
+import logoImage from '../../assets/logo.png'; // Make sure this path is correct
 
 const NavBar = () => {
   const { t, i18n } = useTranslation();
@@ -92,8 +93,9 @@ const NavBar = () => {
 
   const toggleMenu = () => setIsOpen(prev => !prev);
 
-  const handleLanguageChange = (e) => {
-    i18n.changeLanguage(e.target.value);
+  // This function is now general for changing language
+  const changeAppLanguage = (lang) => {
+    i18n.changeLanguage(lang);
   };
 
   const navItems = [
@@ -111,7 +113,20 @@ const NavBar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <span>{t('Sri Anjaneya Swami Temple')}</span>
+        {/* Logo Image */}
+        <img
+          src={logoImage}
+          alt={t('Sri Anjaneya Swami Temple Logo')}
+          className={styles.logoImage}
+          // You can set a default language here, e.g., 'en' or 'te'
+          // When clicked, it will change the language to 'en' (English)
+          onClick={() => changeAppLanguage('en')}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && changeAppLanguage('en')}
+        />
+        {/* Temple Name */}
+        <span className={styles.templeName}>{t('Sri Anjaneya Swami Temple')}</span>
       </div>
 
       <div
@@ -140,12 +155,12 @@ const NavBar = () => {
         ))}
 
         <div className={styles.languageSelector}>
-          <select value={i18n.language} onChange={handleLanguageChange}>
+          <select value={i18n.language} onChange={(e) => changeAppLanguage(e.target.value)}>
             <option value="en">English</option>
+            {/* Uncomment other languages when ready with translations */}
             {/* <option value="kn">ಕನ್ನಡ</option>
             <option value="ta">தமிழ்</option> */}
             <option value="te">తెలుగు</option>
-            
           </select>
         </div>
       </div>
