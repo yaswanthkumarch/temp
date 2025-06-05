@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.scss';
-import { FaWhatsapp, FaGlobeAsia, FaEnvelope, FaYoutube, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaWhatsapp, FaGlobeAsia, FaEnvelope, FaYoutube, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
