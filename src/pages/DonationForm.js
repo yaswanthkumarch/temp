@@ -300,16 +300,16 @@ const DonationForm = () => {
 
             <div style={styles.paymentOptions}>
               <button type="button" style={styles.paymentButton} onClick={handlePhonePeClick}>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/PhonePe_Logo.svg/2560px-PhonePe_Logo.svg.png" alt="PhonePe" style={styles.paymentIcon} />
-                {t('phonePe')}
+               <img src="/ppay.png" alt="PhonePe" style={styles.paymentIcon} />
+  {t('phonePe')}
               </button>
               <button type="button" style={styles.paymentButton} onClick={handleGPayClick}>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Google_Pay_Logo.svg/1200px-Google_Pay_Logo.svg.png" alt="GPay" style={styles.paymentIcon} />
+                <img src="/gpay.png" alt="GPay" style={styles.paymentIcon} />
                 {t('gpay')}
               </button>
               <button type="button" style={styles.paymentButton} onClick={handleUPIClick}>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-Vector.svg" alt="UPI" style={styles.paymentIcon} />
-                {t('upi')}
+               <img src="/upi.png" alt="UPI" style={styles.paymentIcon} />
+                 {t('upi')}
               </button>
             </div>
 

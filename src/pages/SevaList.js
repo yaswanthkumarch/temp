@@ -199,16 +199,13 @@ const SevaList = () => {
           <p style={styles.paymentText}>{t('choosePaymentMethod')}</p>
           <div style={styles.paymentOptions}>
             <button style={styles.paymentButton} onClick={handlePhonePayClick}>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/PhonePe_Logo.svg/2560px-PhonePe_Logo.svg.png" alt="PhonePe" style={styles.paymentIcon} />
-              {t('phonePe')}
+               <img src="/ppay.png" alt="PPay" style={styles.paymentIcon} />  {t('phonePe')}
             </button>
             <button style={styles.paymentButton} onClick={handleGPayClick}>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Google_Pay_Logo.svg/1200px-Google_Pay_Logo.svg.png" alt="GPay" style={styles.paymentIcon} />
-              {t('gpay')}
+               <img src="/gpay.png" alt="GPay" style={styles.paymentIcon} /> {t('gpay')}
             </button>
             <button style={styles.paymentButton} onClick={handleUPIClick}>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-Vector.svg" alt="UPI" style={styles.paymentIcon} />
-              {t('upi')}
+              <img src="/upi.png" alt="upiPay" style={styles.paymentIcon} /> {t('upi')}
             </button>
           </div>
         </div>
