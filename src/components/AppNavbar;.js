@@ -251,11 +251,14 @@ const AppNavbar = () => {
                       isActive ? "active-nav-link" : ""
                     }
                   >
-                  // {(isActiveRoute || isClicked) && (
-                      //<span style={{ fontSize: "1.5rem", lineHeight: "1" }}>
-                       // {icon}
-                    //  </span>
-                 //   )}
+        {/*
+{(isActiveRoute || isClicked) && (
+  <span style={{ fontSize: "1.5rem", lineHeight: "1" }}>
+    {icon}
+  </span>
+)}
+*/}
+
                     <span className={i18n.language === "te" ? "telugu-label" : ""}>
                       {label}
                     </span>
