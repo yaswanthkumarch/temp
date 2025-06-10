@@ -207,12 +207,17 @@
 
 //import React, { useState } from 'react';
 //import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+
+
+
+
+
+
+import React from 'react';
 import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { useState, useEffect } from 'react';
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -229,37 +234,27 @@ const useIsMobile = () => {
 const Home = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const isMobile = useIsMobile();
 
   const sliderSettings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 1000,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
+    arrows: false,
     fade: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
   };
 
   const carouselImages = [
-    { desktop: 'mainlogo.jpg', mobile: 'temple-3.jpg' },
+    {
+      desktop: 'mainlogo.jpg',
+      mobile: 'temple-3.jpg',
+    },
   ];
+
+  const isMobile = useIsMobile();
 
   const hanumanSevas = [
     { nameKey: 'seva.archana.name', descKey: 'seva.archana.desc' },
@@ -271,6 +266,7 @@ const Home = () => {
 
   return (
     <div style={styles.container}>
+      {/* 🛕 Welcome Section with Carousel Background */}
       <section style={styles.carouselWrapper}>
         <Slider {...sliderSettings}>
           {carouselImages.map((img, index) => (
@@ -296,78 +292,171 @@ const Home = () => {
         </Slider>
       </section>
 
-      <section style={styles.sevaSection}>
-        <h2 style={styles.sectionTitle}>{t('popularSevas')}</h2>
-        <div style={styles.sevaList}>
+      {/* Hanuman Seva List Section with distinct background */}
+      <section style={{ backgroundColor: '#fff3cd', padding: '4rem 1rem' }}>
+        {/* Header + Description */}
+        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+          <h2
+            style={{
+              fontSize: '2.3rem',
+              color: '#7b1f1f',
+              fontWeight: '700',
+              marginBottom: '1rem',
+            }}
+          >
+            📿 {t('title')}
+          </h2>
+          <p
+            style={{
+              fontSize: '1.1rem',
+              color: '#4d3d2b',
+              maxWidth: '700px',
+              margin: '0 auto',
+              lineHeight: '1.6',
+            }}
+          >
+            {t('desc')}
+          </p>
+        </div>
+
+        {/* Sevas List */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: '1.5rem',
+            maxWidth: '1100px',
+            margin: '0 auto',
+          }}
+        >
           {hanumanSevas.map((seva, index) => (
-            <div key={index} style={styles.sevaCard}>
-              <h3 style={styles.sevaTitle}>{t(seva.nameKey)}</h3>
-              <p style={styles.sevaDesc}>{t(seva.descKey)}</p>
+            <div
+              key={index}
+              style={{
+                backgroundColor: '#fff',
+                border: '1px solid #ffe0b2',
+                borderRadius: '12px',
+                padding: '1.5rem',
+                boxShadow: '0 6px 18px rgba(0,0,0,0.07)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
+            >
+              <div>
+                <h3
+                  style={{
+                    fontSize: '1.2rem',
+                    fontWeight: '700',
+                    color: '#c54b24',
+                    marginBottom: '0.5rem',
+                    lineHeight: '1.4',
+                  }}
+                >
+                  {t(seva.nameKey)}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '0.95rem',
+                    color: '#444',
+                    lineHeight: '1.6',
+                    marginBottom: '1.2rem',
+                  }}
+                >
+                  {t(seva.descKey)}
+                </p>
+              </div>
               <button
                 onClick={() => navigate('/seva-list')}
-                style={styles.sevaButton}
+                style={{
+                  backgroundColor: '#c54b24',
+                  color: '#fff',
+                  padding: '0.5rem 1.2rem',
+                  border: 'none',
+                  borderRadius: '20px',
+                  fontSize: '0.95rem',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  alignSelf: 'flex-start',
+                  transition: 'background 0.3s ease',
+                }}
+                onMouseOver={(e) => (e.target.style.backgroundColor = '#9b3a1a')}
+                onMouseOut={(e) => (e.target.style.backgroundColor = '#c54b24')}
               >
-                {t('bookNow')}
+                {t('Book Now')}
               </button>
             </div>
           ))}
         </div>
       </section>
 
-      <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>{t('newsAndEvents')}</h2>
-        <p style={styles.sectionDesc}>{t('stayUpdated')}</p>
-        <button
-          onClick={() => navigate('/news-events')}
-          style={styles.actionButton}
-        >
-          {t('readMore')}
-        </button>
-      </section>
+      {/* News and Events Section */}
+      <Section
+        icon="📰"
+        title={t('newsAndEvents')}
+        desc={t('stayUpdated')}
+        button={t('readMore')}
+        bg="#e0f7fa" // light cyan background
+        onClick={() => navigate('/news-events')}
+      />
 
-      <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>{t('volunteer')}</h2>
-        <p style={styles.sectionDesc}>{t('joinSeva')}</p>
-        <button
-          onClick={() => navigate('/volunteer')}
-          style={styles.actionButton}
-        >
-          {t('joinUs')}
-        </button>
-      </section>
+      {/* Volunteer Section */}
+      <Section
+        icon="🙋"
+        title={t('volunteer')}
+        desc={t('joinSeva')}
+        button={t('joinUs')}
+        bg="#ffe0b2" // light orange background
+        onClick={() => navigate('/volunteer')}
+      />
 
-      <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>{t('donate')}</h2>
-        <p style={styles.sectionDesc}>{t('supportTemple')}</p>
-        <button
-          onClick={() => navigate('/donate')}
-          style={styles.actionButton}
-        >
-          {t('donateNow')}
-        </button>
-      </section>
+      {/* Donate Section */}
+      <Section
+        icon="💰"
+        title={t('donate')}
+        desc={t('supportTemple')}
+        button={t('donateNow')}
+        bg="#d1c4e9" // light purple background
+        onClick={() => navigate('/donate')}
+      />
     </div>
   );
 };
 
+// Reusable Section Component
+const Section = ({ icon, title, desc, button, onClick, bg }) => (
+  <section style={{ ...styles.section, backgroundColor: bg }}>
+    <h2 style={styles.sectionTitle}>
+      {icon} {title}
+    </h2>
+    <p style={styles.sectionDesc}>{desc}</p>
+    <button style={styles.actionButton} onClick={onClick}>
+      {button}
+    </button>
+  </section>
+);
+
 const styles = {
   container: {
-    fontFamily: 'Arial, sans-serif',
-    margin: '0',
-    padding: '0',
-    boxSizing: 'border-box',
+    fontFamily: 'Segoe UI, sans-serif',
+    scrollBehavior: 'smooth',
   },
+
+  // Carousel Welcome Section
   carouselWrapper: {
     position: 'relative',
     height: '80vh',
+
     overflow: 'hidden',
   },
   carouselSlide: {
     height: '80vh',
+
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     display: 'flex',
+
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
@@ -383,9 +472,11 @@ const styles = {
     textAlign: 'center',
     color: '#fff',
   },
+
   textColumn: {
     maxWidth: '900px',
     margin: '0 auto',
+    animation: 'fadeInUp 1s ease-in-out',
   },
   heading: {
     fontSize: '3rem',
@@ -404,62 +495,18 @@ const styles = {
     color: '#f0f0f0',
     lineHeight: '1.8',
   },
-  sevaSection: {
-    backgroundColor: '#fff3cd',
-    padding: '4rem 1rem',
-  },
-  sectionTitle: {
-    fontSize: '2.3rem',
-    color: '#7b1f1f',
-    fontWeight: '700',
-    marginBottom: '1rem',
-  },
-  sevaList: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-    gap: '1.5rem',
-    maxWidth: '1100px',
-    margin: '0 auto',
-  },
-  sevaCard: {
-    backgroundColor: '#fff',
-    border: '1px solid #ffe0b2',
-    borderRadius: '12px',
-    padding: '1.5rem',
-    boxShadow: '0 6px 18px rgba(0,0,0,0.07)',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-  sevaTitle: {
-    fontSize: '1.2rem',
-    fontWeight: '700',
-    color: '#c54b24',
-    marginBottom: '0.5rem',
-    lineHeight: '1.4',
-  },
-  sevaDesc: {
-    fontSize: '0.95rem',
-    color: '#444',
-    lineHeight: '1.6',
-    marginBottom: '1.2rem',
-  },
-  sevaButton: {
-    backgroundColor: '#c54b24',
-    color: '#fff',
-    padding: '0.5rem 1.2rem',
-    border: 'none',
-    borderRadius: '20px',
-    fontSize: '0.95rem',
-    fontWeight: '600',
-    cursor: 'pointer',
-    alignSelf: 'flex-start',
-    transition: 'background 0.3s ease',
-  },
+
+  // Section Styles
   section: {
     padding: '4rem 2rem',
     textAlign: 'center',
-    backgroundColor: '#fff4e6',
+    transition: 'all 0.3s ease-in-out',
+  },
+  sectionTitle: {
+    fontSize: '2rem',
+    fontWeight: '700',
+    marginBottom: '1rem',
+    color: '#c54b24',
   },
   sectionDesc: {
     fontSize: '1.1rem',
