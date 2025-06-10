@@ -11,6 +11,8 @@ const Volunteer = () => {
     address: '',
   });
 
+  const [isHovered, setIsHovered] = useState(false);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -67,7 +69,15 @@ const Volunteer = () => {
           </div>
         ))}
 
-        <button type="submit" style={styles.submitButton}>
+        <button
+          type="submit"
+          style={{
+            ...styles.submitButton,
+            ...(isHovered ? styles.submitButtonHover : {}),
+          }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           {t('submitApplication')}
         </button>
       </form>
@@ -80,21 +90,21 @@ const styles = {
     maxWidth: '550px',
     margin: '2rem auto',
     padding: '2rem',
-    background: '#fffaf5',
+    background: '#fef6e4', // Light sand background
     borderRadius: '16px',
-    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0 12px 28px rgba(93, 0, 30, 0.15)',
     fontFamily: "'Segoe UI', sans-serif",
-    color: '#4e342e',
+    color: '#5d001e', // Deep maroon
   },
   header: {
     textAlign: 'center',
-    color: '#b71c1c',
+    color: '#d9480f', // Saffron red
     fontSize: '2rem',
     marginBottom: '0.5rem',
   },
   subtext: {
     textAlign: 'center',
-    color: '#6d4c41',
+    color: '#7a3e2d',
     fontSize: '1rem',
     marginBottom: '2rem',
   },
@@ -105,25 +115,30 @@ const styles = {
     display: 'block',
     marginBottom: '0.5rem',
     fontWeight: '600',
+    color: '#5d001e',
   },
   input: {
     width: '100%',
     padding: '0.8rem',
     borderRadius: '8px',
-    border: '1px solid #ccc',
+    border: '1px solid #c89f72', // Muted gold
     fontSize: '1rem',
     background: '#fffdf5',
+    color: '#3e2723',
   },
   submitButton: {
     width: '100%',
     padding: '1rem',
-    backgroundColor: '#8e1e1a',
+    backgroundColor: '#e76f51', // Temple saffron
     color: '#fff',
     fontSize: '1.1rem',
     border: 'none',
     borderRadius: '8px',
     cursor: 'pointer',
     transition: 'background 0.3s ease',
+  },
+  submitButtonHover: {
+    backgroundColor: '#c1440e', // Deep orange on hover
   },
 };
 
